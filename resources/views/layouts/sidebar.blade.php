@@ -1,4 +1,5 @@
 <!-- Main Sidebar Container -->
+@php($routeIndex = request()->route()->getName())
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="/" class="brand-link">
@@ -12,7 +13,7 @@
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                 <li class="nav-item menu-open">
-                    <a href="#" class="nav-link">
+                    <a href="#" class="nav-link @if(in_array($routeIndex, [DOCUMENT_INDEX, DOCUMENT_CREATE])) active @endif">
                         <i class="nav-icon far fa-envelope"></i>
                         <p>
                             Quản lý hồ sơ
@@ -21,13 +22,13 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="/" class="nav-link">
+                            <a href="{{ route(DOCUMENT_INDEX) }}" class="nav-link @if(in_array($routeIndex, [DOCUMENT_INDEX])) active @endif">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Danh sách hồ sơ</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="/" class="nav-link">
+                            <a href="{{ route(DOCUMENT_CREATE) }}" class="nav-link @if(in_array($routeIndex, [DOCUMENT_CREATE])) active @endif">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Thêm hồ sơ</p>
                             </a>

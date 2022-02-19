@@ -47,25 +47,28 @@
     <script src={{ asset('js/jquery.overlayScrollbars.min.js') }}></script>
     <!-- AdminLTE App -->
     <script src={{ asset('js/adminlte.js') }}></script>
+    <!-- InputMask -->
+    <script src={{ asset('js/moment.min.js') }}></script>
+    <script src={{ asset('js/jquery.inputmask.min.js') }}></script>
+    <!-- bs-custom-file-input -->
+    <script src={{ asset('js/bs-custom-file-input.min.js') }}></script>
+    <script src={{ asset('js/custom/common.js') }}></script>
     @yield('script-files')
 </head>
 <body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed">
 
 <div class="wrapper">
-    <!-- Preloader -->
-    <div class="preloader flex-column justify-content-center align-items-center">
-        <img class="animation__shake" src={{ asset('images/AdminLTELogo.png') }} alt="AdminLTELogo" height="60" width="60">
-    </div>
+{{--    <!-- Preloader -->--}}
+{{--    <div class="preloader flex-column justify-content-center align-items-center">--}}
+{{--        <img class="animation__shake" src={{ asset('images/AdminLTELogo.png') }} alt="AdminLTELogo" height="60" width="60">--}}
+{{--    </div>--}}
     @include('layouts.header')
     @include('layouts.sidebar')
-    <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
         @yield('content')
     </div>
-    <!-- /.content-wrapper -->
 
     @include('layouts.footer')
-    <!-- /.control-sidebar -->
 </div>
 
 @yield('js')

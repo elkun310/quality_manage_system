@@ -1,5 +1,5 @@
 <?php
-
+use Illuminate\Support\Facades\Route;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -12,10 +12,13 @@
 */
 
 Route::get('/', function () {
-    return view('admin.documents.index');
-});
+    return view('admin.home');
+})->name(HOME);
 
 /**
  * Admin routes
  */
-
+Route::prefix('document')->namespace('Admin')->group(function () {
+   Route::get('', 'DocumentController@index')->name(DOCUMENT_INDEX);
+   Route::get('create', 'DocumentController@create')->name(DOCUMENT_CREATE);
+});
