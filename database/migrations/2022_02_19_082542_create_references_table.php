@@ -16,6 +16,10 @@ class CreateReferencesTable extends Migration
         Schema::create('references', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
+            $table->date('publish_date')->comment('cấp ngày')->nullable();
+            $table->string('code')->comment('mã số')->nullable();
+            $table->unsignedBigInteger('document_id');
+            $table->foreign('document_id')->references('id')->on('documents')->onDelete('cascade');
             $table->timestamps();
         });
     }
