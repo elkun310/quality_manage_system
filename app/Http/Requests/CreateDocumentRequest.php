@@ -1,0 +1,47 @@
+<?php
+
+namespace App\Http\Requests;
+
+use Illuminate\Foundation\Http\FormRequest;
+
+class CreateDocumentRequest extends FormRequest
+{
+    /**
+     * Determine if the user is authorized to make this request.
+     *
+     * @return bool
+     */
+    public function authorize()
+    {
+        return true;
+    }
+
+    /**
+     * Get the validation rules that apply to the request.
+     *
+     * @return array
+     */
+    public function rules()
+    {
+        return [
+            'name_company' => 'required|max: 255',
+            'address' => 'required|max: 255',
+            'phone' => 'required|max: 255',
+            'email' => 'required|max: 255',
+            'import_gate' => 'required|max: 255',
+            'import_date' => 'required|max: 255|date_format:d/m/Y|before:tomorrow',
+//            'reference.name' => 'required|max: 255',
+//            'product.*.name' => 'required|max: 255',
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'required' => 'Mời bạn nhập dữ liệu',
+            'max' => 'Dữ liệu không được vượt quá 255 ký tự',
+            'import_date.date_format' => 'Thời gian nhập hàng không đúng định dạng',
+            'import_date.before' => 'Thời gian nhập hàng không được là ngày tương lai',
+        ];
+    }
+}

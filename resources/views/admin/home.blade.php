@@ -21,7 +21,7 @@
                     <!-- small box -->
                     <div class="small-box bg-info">
                         <div class="inner">
-                            <h3>150</h3>
+                            <h3>{{ $documents }}</h3>
                             <p>Hồ sơ</p>
                         </div>
                         <div class="icon">

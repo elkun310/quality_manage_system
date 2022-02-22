@@ -26,10 +26,10 @@
     <!-- Daterange picker -->
     <link rel="stylesheet" href={{ asset('css/daterangepicker.css') }}>
     <link rel="stylesheet" href={{ asset('css/custom/common.css') }}>
+    <link rel="stylesheet" href="{{ asset('plugins/toastr/toastr.min.css') }}">
 
     @yield('styles')
 
-    <script src="{{ asset('plugins/toastr/toastr.min.js') }}"></script>
     <!-- jQuery -->
     <script src={{ asset('js/jquery.min.js') }}></script>
     <!-- jQuery UI 1.11.4 -->
@@ -53,6 +53,7 @@
     <!-- bs-custom-file-input -->
     <script src={{ asset('js/bs-custom-file-input.min.js') }}></script>
     <script src={{ asset('js/custom/common.js') }}></script>
+    <script src="{{ asset('plugins/toastr/toastr.min.js') }}"></script>
     @yield('script-files')
 </head>
 <body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed">

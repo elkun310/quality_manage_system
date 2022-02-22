@@ -1,4 +1,6 @@
 <?php
+
+use App\Document;
 use Illuminate\Support\Facades\Route;
 /*
 |--------------------------------------------------------------------------
@@ -12,7 +14,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('admin.home');
+    $documents = Document::count();
+    return view('admin.home', compact('documents'));
 })->name(HOME);
 
 /**
@@ -21,4 +24,5 @@ Route::get('/', function () {
 Route::prefix('document')->namespace('Admin')->group(function () {
    Route::get('', 'DocumentController@index')->name(DOCUMENT_INDEX);
    Route::get('create', 'DocumentController@create')->name(DOCUMENT_CREATE);
+   Route::post('store', 'DocumentController@store')->name(DOCUMENT_STORE);
 });
