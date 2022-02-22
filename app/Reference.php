@@ -1,0 +1,32 @@
+<?php
+
+namespace App;
+
+use Illuminate\Database\Eloquent\Model;
+
+class Reference extends Model
+{
+    /**
+     * The table associated with the model.
+     *
+     * @var string
+     */
+    protected $table = 'references';
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var string[]
+     */
+    protected $fillable = [
+        'name',
+        'publish_date',
+        'code',
+        'document_id',
+    ];
+
+    public function document()
+    {
+        $this->belongsTo(Document::class);
+    }
+}
