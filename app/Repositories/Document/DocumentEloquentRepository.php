@@ -28,8 +28,8 @@ class DocumentEloquentRepository extends BaseRepository implements DocumentRepos
         DB::beginTransaction();
         try {
             $params = $request->all();
-            $params['import_date'] = Carbon::parse($params['import_date']);
-            $params['dead_line'] = Carbon::parse($params['import_date'])->addDays(15);
+            $params['import_date'] = Carbon::parse(date('Y-m-d', strtotime($params['import_date'])));
+            $params['dead_line'] = Carbon::parse(now())->addDays(15)->format('y-m-d');
             $document = Document::create($params);
 
             //update url and digital code
@@ -44,7 +44,7 @@ class DocumentEloquentRepository extends BaseRepository implements DocumentRepos
             foreach (json_decode($request->reference) as $value) {
                 $reference = new Reference();
                 $reference->name = $value->name;
-                $reference->publish_date = Carbon::parse($value->publish_date);
+                $reference->publish_date = Carbon::parse(date('Y-m-d', strtotime($value->publish_date)));
                 $reference->code = $value->code;
                 $reference->document_id = $document->id;
                 $reference->save();
@@ -61,15 +61,6 @@ class DocumentEloquentRepository extends BaseRepository implements DocumentRepos
                 $product->document_id = $document->id;
                 $product->save();
             }
-
-//            $document->references()->createMany($dataReferences);
-//            $document->references()->createMany([
-//                [
-//                    'name' => '123',
-//                    'publish_date' => '2020-11-12',
-//                    'code' => '123'
-//                ]
-//            ]);
 
             DB::commit();
             Storage::disk('public')->putFileAs('attach_files', $file, $document->id.'_'.$file->getClientOriginalName());
