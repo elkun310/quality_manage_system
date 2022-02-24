@@ -22,6 +22,8 @@ class DocumentController extends Controller
     }
     public function index()
     {
+//        $documents = $this->documentRepository->find(2);
+//        dd($documents->dead_line >= now()->format('Y-m-d'));
         return view('admin.documents.index');
     }
 
