@@ -29,7 +29,7 @@ class DocumentEloquentRepository extends BaseRepository implements DocumentRepos
         try {
             $params = $request->all();
             $params['import_date'] = Carbon::parse(date('Y-m-d', strtotime($params['import_date'])));
-            $params['dead_line'] = Carbon::parse(now())->addDays(15)->format('y-m-d');
+            $params['dead_line'] = Carbon::parse(now())->addWeekdays(15)->format('y-m-d');
             $document = Document::create($params);
 
             //update url and digital code
