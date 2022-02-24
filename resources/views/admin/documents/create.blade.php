@@ -37,13 +37,15 @@
                                 <div class="form-group row">
                                     <label for="name_company" class="col-sm-3 col-form-label">Tên công ty</label>
                                     <input required type="text" class="form-control col-sm-9" id="name_company"
-                                           placeholder="Nhập tên công ty" name="name_company" autocomplete="off">
+                                           placeholder="Nhập tên công ty" name="name_company" autocomplete="off" data-name="name_company">
+                                    <p class="col-sm-9 text-danger offset-sm-3 error" data-error="name_company"></p>
                                 </div>
 
                                 <div class="form-group row">
                                     <label for="address" class="col-sm-3 col-form-label">Địa chỉ</label>
                                     <input required type="text" class="form-control col-sm-9" id="address"
-                                           placeholder="Nhập địa chỉ" name="address">
+                                           placeholder="Nhập địa chỉ" name="address" data-name="address">
+                                    <p class="col-sm-9 text-danger offset-sm-3 error" data-error="address"></p>
                                 </div>
 
                                 <div class="form-group row">
@@ -52,21 +54,24 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text"><i class="fas fa-phone"></i></span>
                                         </div>
-                                        <input id="phone" name="phone" required class="form-control" type="text"
+                                        <input id="phone" name="phone" data-name="phone" required class="form-control" type="text"
                                                oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
                                     </div>
+                                    <p class="col-sm-9 text-danger offset-sm-3 no-padding error" data-error="phone"></p>
                                 </div>
 
                                 <div class="form-group row">
                                     <label for="email" class="col-sm-3 col-form-label">Địa chỉ email</label>
                                     <input type="email" class="form-control col-sm-9" id="email"
-                                           placeholder="Nhập email" name="email">
+                                           placeholder="Nhập email" name="email" data-error="email">
+                                    <p class="col-sm-9 text-danger offset-sm-3 no-padding error" data-error="email"></p>
                                 </div>
 
                                 <div class="form-group row">
                                     <label for="import_gate" class="col-sm-3 col-form-label">Cửa khẩu nhập</label>
                                     <input required type="text" class="form-control col-sm-9" id="import_gate"
-                                           placeholder="Nhập cửa khẩu" name="import_gate">
+                                           placeholder="Nhập cửa khẩu" name="import_gate" data-error="import_gate">
+                                    <p class="col-sm-9 text-danger offset-sm-3 no-padding error" data-error="import_gate"></p>
                                 </div>
 
                                 <div class="form-group row">
@@ -77,18 +82,20 @@
                                         </div>
                                         <input id="import_date" type="text" class="form-control"
                                                data-inputmask-alias="datetime" data-inputmask-inputformat="dd/mm/yyyy"
-                                               data-mask="" inputmode="numeric" name="import_date" placeholder="dd/mm/yyyy">
+                                               data-mask="" inputmode="numeric" name="import_date" placeholder="dd/mm/yyyy" data-error="import_date">
                                     </div>
+                                    <p class="col-sm-9 text-danger offset-sm-3 no-padding error" data-error="import_date"></p>
                                 </div>
 
                                 <div class="form-group row">
                                     <label for="attach_file" class="col-sm-3 col-form-label">File đính kèm (nếu có)</label>
                                     <div class="input-group col-sm-9 no-padding">
                                         <div class="custom-file">
-                                            <input type="file" class="custom-file-input" id="attach_file" name="attach_file">
+                                            <input type="file" class="custom-file-input" id="attach_file" name="attach_file" data-error="attach_file">
                                             <label class="custom-file-label" for="attach_file">Choose file</label>
                                         </div>
                                     </div>
+                                    <p class="col-sm-9 text-danger offset-sm-3 no-padding error" data-error="attach_file"></p>
                                 </div>
 
                                 <!--Tài liệu đính kèm-->

@@ -25,9 +25,25 @@ let documentManage = (function () {
         return products;
     }
 
+    let clearData = function (selector) {
+        $(selector).find('input').removeClass('error-border');
+        $(`${selector} .error`).text('');
+    }
+
+    let showMessage = function (selector, errors) {
+        $(selector).find('.btn-submit').prop('disabled', false);
+        $(`${selector} .error`).text('');
+        $.each(errors, function (key, value) {
+            $(selector).find(`[data-error='${key}']`).text(value);
+            $(selector).find(`[data-name='${key}']`).addClass('error-border');
+        })
+    }
+
     return {
         getDataReference : getDataReference,
         getDataProduct : getDataProduct,
+        showMessage: showMessage,
+        clearData: clearData,
     }
 })()
 
@@ -90,6 +106,7 @@ $(document).ready(function () {
     })
 
     $('.document-create').submit(function(e) {
+        documentManage.clearData('.document-create');
         $('.document-create .btn-submit').prop('disabled', true);
         let references = documentManage.getDataReference('.wrapper-reference .reference-item.checked')
         let products = documentManage.getDataProduct('.wrapper-product .product-item')
@@ -112,11 +129,22 @@ $(document).ready(function () {
                         window.location.href = '/document';
                     }, 1000)
                 } else {
+                    $("html, body").animate({ scrollTop: 0 }, "slow");
+                    toastr.options.preventDuplicates = true;
                     toastr.error('Đã có lỗi xảy ra');
                 }
             },
             error: function(data){
                 $('.document-create .btn-submit').prop('disabled', false);
+                if (data.status === 422) {
+                    documentManage.showMessage('.document-create', data.responseJSON.errors)
+                    $('html, body').animate({
+                        scrollTop: $(`[data-error=${Object.keys(data.responseJSON.errors)[0]}]`).offset().top - 200
+                    }, 1000);
+                } else {
+                    $("html, body").animate({ scrollTop: 0 }, "slow");
+                }
+                toastr.options.preventDuplicates = true;
                 toastr.error('Đã có lỗi xảy ra');
             }
         });

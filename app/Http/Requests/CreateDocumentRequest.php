@@ -24,12 +24,13 @@ class CreateDocumentRequest extends FormRequest
     public function rules()
     {
         return [
-            'name_company' => 'required|max: 255',
-            'address' => 'required|max: 255',
-            'phone' => 'required|max: 255',
-            'email' => 'required|max: 255',
-            'import_gate' => 'required|max: 255',
-            'import_date' => 'required|max: 255|date_format:d/m/Y|before:tomorrow',
+            'name_company' => 'required|max:255',
+            'address' => 'required|max:255',
+            'phone' => 'required|max:255',
+            'email' => 'required|max:255|email',
+            'import_gate' => 'required|max:255',
+            'import_date' => 'required|max:255|date_format:d/m/Y|before:tomorrow',
+            'attach_file' => 'nullable|max:5000'
 //            'reference.name' => 'required|max: 255',
 //            'product.*.name' => 'required|max: 255',
         ];
@@ -42,6 +43,8 @@ class CreateDocumentRequest extends FormRequest
             'max' => 'Dữ liệu không được vượt quá 255 ký tự',
             'import_date.date_format' => 'Thời gian nhập hàng không đúng định dạng',
             'import_date.before' => 'Thời gian nhập hàng không được là ngày tương lai',
+            'attach_file.max' => 'File đính kèm không vượt quá 5MB',
+            'email.email' => 'Sai định dạng email',
         ];
     }
 }
