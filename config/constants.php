@@ -20,6 +20,14 @@ if (!defined('DOCUMENT_STORE')) {
     define('DOCUMENT_STORE', 'document.store');
 }
 
+if (!defined('DOCUMENT_SHOW')) {
+    define('DOCUMENT_SHOW', 'document.show');
+}
+
+if (!defined('DOCUMENT_EDIT')) {
+    define('DOCUMENT_EDIT', 'document.edit');
+}
+
 if (!defined('REFERENCES')) {
     define('REFERENCES', [
         'Giấy đăng ký kiểm tra chất lượng hàng hóa nhập khẩu',
@@ -37,7 +45,7 @@ if (!defined('REFERENCES')) {
 }
 
 if (!defined('DIGITAL_NAMESPACE')) {
-    define('DIGITAL_NAMESPACE', '"/CTV-TT2"');
+    define('DIGITAL_NAMESPACE', '/CTV-TT2');
 }
 
 if (!defined('HTTP_SUCCESS')) {
@@ -54,4 +62,8 @@ if (!defined('STR_ERROR_FLASH')) {
 
 if (!defined('STR_SUCCESS_FLASH')) {
     define('STR_SUCCESS_FLASH', 'success-flash');
+}
+
+if (!defined('PAGINATE_DEFAULT')) {
+    define('PAGINATE_DEFAULT', '10');
 }

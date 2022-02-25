@@ -24,7 +24,13 @@ class DocumentEloquentRepository extends BaseRepository implements DocumentRepos
         return Document::class;
     }
 
-    public function createDocument($request) {
+    /**
+     * @param $request
+     * @return bool
+     * Create document
+     */
+    public function createDocument($request)
+    {
         DB::beginTransaction();
         try {
             $params = $request->all();
@@ -35,7 +41,7 @@ class DocumentEloquentRepository extends BaseRepository implements DocumentRepos
             //update url and digital code
             if ($request->hasFile('attach_file')) {
                 $file = $request->file('attach_file');
-                $document->url = $document->id.'_'.$file->getClientOriginalName() ?? null;
+                $document->url = $document->id . '_' . $file->getClientOriginalName() ?? null;
             }
             $document->digital_code = $document->id . DIGITAL_NAMESPACE;
             $document->save();
@@ -63,12 +69,29 @@ class DocumentEloquentRepository extends BaseRepository implements DocumentRepos
             }
 
             DB::commit();
-            Storage::disk('public')->putFileAs('attach_files', $file, $document->id.'_'.$file->getClientOriginalName());
+            Storage::disk('public')->putFileAs('attach_files', $file, $document->id . '_' . $file->getClientOriginalName());
             return $document;
         } catch (\Exception $exception) {
             DB::rollBack();
             report($exception);
             return false;
         }
+    }
+
+    /**
+     * Get list documents
+     */
+    public function getList($param)
+    {
+        return $this->model
+            ->when(isset($param['search']), function ($query) use ($param) {
+                return $query->where('name_company', 'like', '%' . escapeSpecialCharacter($param['search']) . '%')
+                    ->orWhere('digital_code', $param['search'])
+                    ->orWhereHas('products', function ($query) use ($param) {
+                        $query->where('products.name', 'like', '%' . escapeSpecialCharacter($param['search']) . '%');
+                    });
+            })
+            ->orderBy('id', 'desc')
+            ->paginate(PAGINATE_DEFAULT);
     }
 }

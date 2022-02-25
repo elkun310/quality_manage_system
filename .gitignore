@@ -16,3 +16,4 @@ yarn-error.log
 /laradock
 .DS_Store
 /storage/framework/laravel-excel
+/storage/debugbar
