@@ -24,7 +24,7 @@
         <div class="container-fluid">
             <h2 class="text-center display-4">Tìm kiếm</h2>
             <div class="row">
-                <div class="col-md-8 offset-md-2">
+                <div class="col-md-8">
                     <form method="get" action="{{ route(DOCUMENT_INDEX) }}">
                         <div class="input-group">
                             <input name="search" type="search" class="form-control form-control-lg" value="{{ $param['search'] ?? "" }}" placeholder="Mời nhập tên công ty, mã ký số">
@@ -35,6 +35,17 @@
                             </div>
                         </div>
                     </form>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label>
+                            <select class="form-control slt-status">
+                                <option value="">Tất cả</option>
+                                <option value="{{ ACTIVE }}">Còn hạn</option>
+                                <option value="{{ DEAD_LINE_STATUS }}">Quá hạn</option>
+                            </select>
+                        </label>
+                    </div>
                 </div>
             </div>
             <br><br>
@@ -51,21 +62,41 @@
                                 <th>Mã ký số</th>
                                 <th>Địa chỉ</th>
                                 <th>Ngày quá hạn</th>
+                                <th>Tình trạng</th>
                                 <th></th>
                             </tr>
                             </thead>
                             <tbody>
                             @forelse($documents as $key => $document)
-                                <tr class="@if($document->dead_line < now()->format('Y-m-d'))dead-line-bg @endif">
+                                <tr>
                                     <td>{{ $documents->currentPage() * $documents->perPage() - $documents->perPage() + $key +1 }}</td>
                                     <td>{{ $document->name_company }}</td>
                                     <td>{{ $document->digital_code }}</td>
                                     <td>{{ $document->address }}</td>
                                     <td>{{ \Carbon\Carbon::parse($document->dead_line)->format('d-m-Y') }}</td>
                                     <td>
-                                        <a href="{{ route(DOCUMENT_SHOW, $document->id) }}" class="mr-2"><button class="btn btn-info btn-action">Xem</button></a>
-                                        <a href="{{ route(DOCUMENT_EDIT, $document->id) }}" class="mr-2"><button class="btn btn-warning btn-action">Sửa</button></a>
-                                        <a href="#" class="mr-2"><button class="btn btn-danger btn-action">Xoá</button></a>
+                                        @if($document->dead_line < now()->format('Y-m-d'))
+                                            <span class="badge badge-danger">Quá hạn</span>
+                                        @else
+                                            <span class="badge badge-success">Còn hạn</span>
+                                        @endif
+                                    </td>
+                                    <td>
+                                        <a href="{{ route(DOCUMENT_SHOW, $document->id) }}" class="btn btn-primary btn-sm mb-2">
+                                            <i class="fas fa-eye">
+                                            </i>
+                                            Xem
+                                        </a>
+                                        <a class="btn btn-info btn-sm mb-2" href="{{ route(DOCUMENT_EDIT, $document->id) }}">
+                                            <i class="fas fa-pencil-alt">
+                                            </i>
+                                            Sửa
+                                        </a>
+                                        <a class="btn btn-danger btn-sm mb-2" href="#">
+                                            <i class="fas fa-trash">
+                                            </i>
+                                            Xoá
+                                        </a>
                                     </td>
                                 </tr>
                             @empty

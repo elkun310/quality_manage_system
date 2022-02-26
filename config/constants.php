@@ -67,3 +67,11 @@ if (!defined('STR_SUCCESS_FLASH')) {
 if (!defined('PAGINATE_DEFAULT')) {
     define('PAGINATE_DEFAULT', '10');
 }
+
+if (!defined('DEAD_LINE_STATUS')) {
+    define('DEAD_LINE_STATUS', '0');
+}
+
+if (!defined('ACTIVE')) {
+    define('ACTIVE', '1');
+}

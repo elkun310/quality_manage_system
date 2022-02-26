@@ -13,7 +13,7 @@
 
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="{{ route(HOME) }}">Trang chủ</a></li>
+                        <li class="breadcrumb-item"><a href="{{ route(DOCUMENT_INDEX) }}">Danh sách hồ sơ</a></li>
                         <li class="breadcrumb-item active">Thêm hồ sơ</li>
                     </ol>
                 </div>

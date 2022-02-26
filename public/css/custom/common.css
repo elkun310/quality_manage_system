@@ -140,3 +140,7 @@ input[rule="required"].in-valid {
 .dead-line-bg {
     background-color: #dd4b39 !important;
 }
+
+.slt-status{
+    min-height: 49px;
+}

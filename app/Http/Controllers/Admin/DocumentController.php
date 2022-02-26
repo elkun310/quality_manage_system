@@ -25,10 +25,6 @@ class DocumentController extends Controller
     public function index(Request $request)
     {
         $param = $request->all();
-//        dd($param['search']);
-//        $documents = $this->documentRepository->getList($param);
-//        $documents = $this->documentRepository->find(2);
-//        dd($documents->dead_line >= now()->format('Y-m-d'));
         return view('admin.documents.index', [
             'documents' => $this->documentRepository->getList($param),
             'param' => $param
@@ -37,7 +33,10 @@ class DocumentController extends Controller
 
     public function show($id)
     {
-        dd($id);
+        return view('admin.documents.detail', [
+            'document' => $this->documentRepository->with(['products', 'references'])->where('id', $id)->first()
+        ]);
+        dd($document);
     }
 
     public function create()
