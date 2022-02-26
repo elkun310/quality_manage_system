@@ -91,6 +91,13 @@ class DocumentEloquentRepository extends BaseRepository implements DocumentRepos
                         $query->where('products.name', 'like', '%' . escapeSpecialCharacter($param['search']) . '%');
                     });
             })
+            ->when(isset($param['dead_line']), function ($query) use ($param) {
+                switch ($param['dead_line']) {
+                    case DEAD_LINE_STATUS: return $query->where('dead_line', '<', now()->format('Y-m-d'));
+                    case ACTIVE: return $query->where('dead_line', '>=', now()->format('Y-m-d'));
+                    case ALL: break;
+                }
+            })
             ->orderBy('id', 'desc')
             ->paginate(PAGINATE_DEFAULT);
     }

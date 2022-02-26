@@ -75,3 +75,7 @@ if (!defined('DEAD_LINE_STATUS')) {
 if (!defined('ACTIVE')) {
     define('ACTIVE', '1');
 }
+
+if (!defined('ALL')) {
+    define('ALL', "null");
+}

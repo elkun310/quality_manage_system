@@ -36,7 +36,6 @@ class DocumentController extends Controller
         return view('admin.documents.detail', [
             'document' => $this->documentRepository->with(['products', 'references'])->where('id', $id)->first()
         ]);
-        dd($document);
     }
 
     public function create()

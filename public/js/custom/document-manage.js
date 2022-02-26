@@ -105,6 +105,7 @@ $(document).ready(function () {
         $(this).parent('.product-item').remove();
     })
 
+    //save document
     $('.document-create').submit(function(e) {
         documentManage.clearData('.document-create');
         $('.document-create .btn-submit').prop('disabled', true);
@@ -149,4 +150,9 @@ $(document).ready(function () {
             }
         });
     });
+
+    //filter document
+    $(document).on('change', '.slt-status', function () {
+        $('.filter-document-form').submit();
+    })
 })
