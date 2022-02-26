@@ -63,4 +63,15 @@ class DocumentController extends Controller
     {
         dd($id, 'sua');
     }
+
+    public function destroy($id)
+    {
+        if (!$this->documentRepository->find($id)) {
+            return redirect()->route(DOCUMENT_INDEX)->with('error-flash', 'Đã có lỗi xảy ra');
+        }
+        if ($this->documentRepository->deleteById($id)) {
+            return redirect()->route(DOCUMENT_INDEX)->with('success-flash', 'Xoá thành công');;
+        }
+        return redirect()->route(DOCUMENT_INDEX)->with('error-flash', 'Đã có lỗi xảy ra');
+    }
 }

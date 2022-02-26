@@ -28,6 +28,10 @@ if (!defined('DOCUMENT_EDIT')) {
     define('DOCUMENT_EDIT', 'document.edit');
 }
 
+if (!defined('DOCUMENT_DELETE')) {
+    define('DOCUMENT_DELETE', 'document.destroy');
+}
+
 if (!defined('REFERENCES')) {
     define('REFERENCES', [
         'Giấy đăng ký kiểm tra chất lượng hàng hóa nhập khẩu',

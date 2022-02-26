@@ -24,12 +24,12 @@
         <div class="container-fluid invoice">
             <div class="row">
                 <div class="card-header col-md-12 text-center">
-                    <h4>CỘNG HOÀ XÃ HỘI CHỦ NGHĨA VIỆT NAM</h4>
-                    <h5>Độc lập - Tự do - Hạnh phúc</h5>
+                    <h5>CỘNG HOÀ XÃ HỘI CHỦ NGHĨA VIỆT NAM</h5>
+                    <h6>Độc lập - Tự do - Hạnh phúc</h6>
                     <br>
-                    <h4>ĐĂNG KÝ KIỂM TRA</h4>
-                    <h4>NHÀ NƯỚC VỀ CHẤT LƯỢNG QUẢN LÝ SẢN PHẨM</h4>
-                    <h5 class="text-bold">Kính gửi: Cục viễn thông</h5>
+                    <h5>ĐĂNG KÝ KIỂM TRA</h5>
+                    <h5>NHÀ NƯỚC VỀ CHẤT LƯỢNG QUẢN LÝ SẢN PHẨM</h5>
+                    <h6 class="text-bold">Kính gửi: Cục viễn thông</h6>
                 </div>
             </div>
 
