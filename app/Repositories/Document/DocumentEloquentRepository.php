@@ -50,8 +50,8 @@ class DocumentEloquentRepository extends BaseRepository implements DocumentRepos
             foreach (json_decode($request->reference) as $value) {
                 $reference = new Reference();
                 $reference->name = $value->name;
-                $reference->publish_date = Carbon::parse(date('Y-m-d', strtotime($value->publish_date)));
-                $reference->code = $value->code;
+                $reference->publish_date = $value->publish_date ? Carbon::parse(date('Y-m-d', strtotime($value->publish_date))) : null;
+                $reference->code = $value->code ?: null;
                 $reference->document_id = $document->id;
                 $reference->save();
             }
