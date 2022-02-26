@@ -122,9 +122,6 @@
                                                     <div class="row mt-2">
                                                         <label class="col-sm-2 col-form-label">Mã số cấp</label>
                                                         <div class="input-group col-sm-5 no-padding">
-                                                            <div class="input-group-prepend">
-                                                                <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
-                                                            </div>
                                                             <input required type="text" class="form-control code" placeholder="Nhập mã số cấp">
                                                         </div>
                                                     </div>
@@ -132,6 +129,7 @@
                                             </div>
                                         @endforeach
                                     </div>
+                                    <p class="col-sm-9 text-danger offset-sm-3 no-padding error" data-error="reference"></p>
                                 </div>
                             </div>
                         </div>
@@ -143,7 +141,7 @@
                             <h5>Thông tin hàng hoá</h5>
                             <button type="button" class="btn bg-gradient-primary btn-add-product"> <i class="fas fa-plus mr-1"></i>Thêm</button>
                         </div>
-
+                        <p class="col-sm-9 text-danger no-padding error" data-error="product"></p>
                         <div class="card card-default product-item">
                             <div class="card-body">
                                 <div class="form-group row">

@@ -69,7 +69,9 @@ class DocumentEloquentRepository extends BaseRepository implements DocumentRepos
             }
 
             DB::commit();
-            Storage::disk('public')->putFileAs('attach_files', $file, $document->id . '_' . $file->getClientOriginalName());
+            if ($request->hasFile('attach_file')) {
+                Storage::disk('public')->putFileAs('attach_files', $file, $document->id . '_' . $file->getClientOriginalName());
+            }
             return $document;
         } catch (\Exception $exception) {
             DB::rollBack();

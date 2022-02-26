@@ -2,6 +2,8 @@
 
 namespace App\Http\Requests;
 
+use App\Rules\CheckProduct;
+use App\Rules\CheckReference;
 use Illuminate\Foundation\Http\FormRequest;
 
 class CreateDocumentRequest extends FormRequest
@@ -30,9 +32,9 @@ class CreateDocumentRequest extends FormRequest
             'email' => 'required|max:255|email',
             'import_gate' => 'required|max:255',
             'import_date' => 'required|max:255|date_format:d/m/Y|before:tomorrow',
-            'attach_file' => 'nullable|mimes:pdf,doc,docx|max:5000'
-//            'reference.name' => 'required|max: 255',
-//            'product.*.name' => 'required|max: 255',
+            'attach_file' => 'nullable|mimes:pdf,doc,docx|max:5000',
+            'reference' => [ new CheckReference() ],
+            'product' => new CheckProduct(),
         ];
     }
 

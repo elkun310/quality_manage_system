@@ -60,113 +60,30 @@ if (!function_exists('escapeSpecialCharacter')) {
     }
 }
 
-if (!function_exists('getDateFormat')) {
+if (!function_exists('checkValidateProduct')) {
     /**
-     * Get Date Has Format yyy-mm-dd
-     * @param string $timeRequest
-     * @param string $separator option
-     * @return false|string date has format yyy-mm-dd
+     *
+     * SQLの特殊文字をエスケープする関数like（％）
+     * @param $value
+     * @return bool|string
      */
-    function getDateFormat($timeRequest, $separator = '-')
+    function checkValidateProduct($value)
     {
-        $times = explode($separator, $timeRequest, 3);
-
-        if (count($times) != 3) {
-            return false;
+        if ($value->name === "" || strlen($value->name) >= 255) {
+            return 'Tên của sản phẩm đang nhập sai';
         }
-
-        list($year, $month, $day) = array_map(function ($t) {
-            if (!is_numeric($t)) {
-                return 0;
-            }
-
-            return $t;
-        }, $times);
-
-        if (false === strtotime($year . '/' . $month . '/' . $day)) {
-            return false;
+        if ($value->specification === "" || strlen($value->specification) >= 255) {
+            return 'Đặc tính kỹ thuật của sản phẩm đang nhập sai';
         }
-
-        if (checkdate($month, $day, $year)) {
-            return "$year-$month-$day";
+        if ($value->symbol === "" || strlen($value->symbol) >= 255) {
+            return 'Ký hiệu của sản phẩm đang nhập sai';
         }
-
-        return false;
-    }
-}
-
-if (!function_exists('levelOfParticipant')) {
-    /**
-     * Convert Level Of Participant Type Int To Text Kana
-     */
-    function levelOfParticipant(int $participantLevel, int $scheduleType)
-    {
-        $levels = App\Enums\Level::toArray();
-        $types = TYPE_CLASS[$scheduleType];
-
-        return $levels[$types][$participantLevel];
-    }
-}
-
-if (!function_exists('appendColumnEmpty')) {
-    function appendColumnEmpty($count, $column, $totalCount): string
-    {
-        $totalCell = ($totalCount - $count) * $column;
-        return str_repeat('<td></td>', $totalCell);
-    }
-}
-
-if (!function_exists('levels')) {
-    function levels($scheduleType)
-    {
-        $levels = App\Enums\Level::toArray();
-        $types = TYPE_CLASS[$scheduleType];
-
-        return $levels[$types];
-    }
-}
-
-if (!function_exists('renderStatus')) {
-    function renderStatus($enum, $status): string
-    {
-        return $enum::STATUS[$status];
-    }
-}
-
-if (!function_exists('isTeachable')) {
-    function isTeachable($selectedSubject, $listSubjects)
-    {
-        return in_array($selectedSubject, $listSubjects) ? Schedule::TEACHABLE : Schedule::UNTEACHABLE;
-    }
-}
-
-if (!function_exists('getSubjectId')) {
-    function getSubjectId($dataRow)
-    {
-        $dataSubjects = [];
-        unset($dataRow['数']);
-        foreach ($dataRow as $item => $value) {
-            if ($value === ACTIVE) {
-                $dataSubjects[] = TYPE_SUBJECT[strtolower($item)];
-            }
+        if ($value->origin === "" || strlen($value->origin) >= 255) {
+            return 'Xuất xứ, nhà sản xuất của sản phẩm đang nhập sai';
         }
-        return $dataSubjects;
-    }
-}
-
-if (!function_exists('getDeadlineDefault')) {
-    function getDeadlineDefault($startTime): string
-    {
-        if (strtotime($startTime) < strtotime(Classroom::COMPARE_TIME)) {
-            return Classroom::DEADLINE['morning'];
+        if ($value->amount === "") {
+            return 'Số lượng của sản phẩm đang nhập sai';
         }
-        return Classroom::DEADLINE['afternoon'];
-    }
-}
-
-if (!function_exists('checkDeadlineLesson')) {
-    function checkDeadlineLesson($lesson)
-    {
-        return (Carbon::now()->format('H:i') > $lesson->deadline) && ($lesson->date_book === Carbon::now()->format('Y-m-d'));
+        return true;
     }
 }
