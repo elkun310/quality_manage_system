@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 class Reference extends Model
@@ -28,5 +29,10 @@ class Reference extends Model
     public function document()
     {
         $this->belongsTo(Document::class);
+    }
+
+    public function getPublishDateAttribute($value)
+    {
+        return Carbon::parse($value)->format('d/m/Y');
     }
 }

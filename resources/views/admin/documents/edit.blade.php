@@ -39,7 +39,7 @@
                                     <label for="name_company" class="col-sm-3 col-form-label">Tên công ty</label>
                                     <input required type="text" class="form-control col-sm-9" id="name_company"
                                            placeholder="Nhập tên công ty" name="name_company" autocomplete="off"
-                                           data-name="name_company" value="{{ $document->name_company }}">
+                                           data-name="name_company" value="{{old('name_company', $document->name_company)}}">
                                     <p class="col-sm-9 text-danger offset-sm-3 error" data-error="name_company"></p>
                                 </div>
 
@@ -92,7 +92,7 @@
                                                data-inputmask-alias="datetime" data-inputmask-inputformat="dd/mm/yyyy"
                                                data-mask="" inputmode="numeric" name="import_date"
                                                placeholder="dd/mm/yyyy" data-error="import_date"
-                                               value="{{ $document->import_date }}">
+                                               value="{{old('import_date', $document->import_date)}}">
                                     </div>
                                     <p class="col-sm-9 text-danger offset-sm-3 no-padding error"
                                        data-error="import_date"></p>
@@ -159,6 +159,17 @@
                                     <p class="col-sm-9 text-danger offset-sm-3 no-padding error"
                                        data-error="reference"></p>
                                 </div>
+
+                                <!-- Gian hạn thêm -->
+                                <div class="form-group row">
+                                    <label for="date_extend" class="col-sm-3 col-form-label">Gia hạn ( ngày )</label>
+                                    <div class="input-group col-sm-9 no-padding">
+                                        <input id="date_extend" type="number" class="form-control"
+                                               placeholder="Nhập số ngày" data-error="date_extend" name="date_extend">
+                                    </div>
+                                    <p class="col-sm-9 text-danger offset-sm-3 no-padding error"
+                                       data-error="date_extend"></p>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -178,7 +189,7 @@
                                 <div class="form-group row">
                                     <label for="name" class="col-sm-3 col-form-label">Tên hàng hoá</label>
                                     <textarea id="name" class="form-control col-sm-9 name-product" rows="2"
-                                              placeholder="Nhập tên hàng hoá">{{ $document->products[0]->name }}
+                                              placeholder="Nhập tên hàng hoá">{{ count($document->products) > 0 ? $document->products[0]->name : "" }}
                                     </textarea>
                                 </div>
 
@@ -187,21 +198,21 @@
                                     <input required type="text" class="form-control col-sm-9 specification"
                                            id="specification"
                                            placeholder="Nhập đặc tính kỹ thuật" autocomplete="off"
-                                           value="{{ $document->products[0]->specification }}">
+                                           value="{{ count($document->products) > 0 ? $document->products[0]->specification : "" }}">
                                 </div>
 
                                 <div class="form-group row">
                                     <label for="symbol" class="col-sm-3 col-form-label">Ký hiệu</label>
                                     <input required type="text" class="form-control col-sm-9 symbol" id="symbol"
                                            placeholder="Nhập ký hiệu" autocomplete="off"
-                                           value="{{ $document->products[0]->symbol }}">
+                                           value="{{ count($document->products) > 0 ? $document->products[0]->symbol : ""}}">
                                 </div>
 
                                 <div class="form-group row">
                                     <label for="origin" class="col-sm-3 col-form-label">Xuất xứ, nhà sản xuất</label>
                                     <input required type="text" class="form-control col-sm-9 origin" id="origin"
                                            placeholder="Nhập xuất xứ, nhà sản xuất" autocomplete="off"
-                                           value="{{ $document->products[0]->origin }}">
+                                           value="{{ count($document->products) > 0 ? $document->products[0]->origin : "" }}">
                                 </div>
 
                                 <div class="form-group row">
@@ -210,7 +221,7 @@
                                            oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');"
                                            class="form-control col-sm-9 amount" id="amount"
                                            placeholder="Nhập số lượng" autocomplete="off"
-                                           value="{{ $document->products[0]->amount }}">
+                                           value="{{ count($document->products) > 0 ? $document->products[0]->amount : "" }}">
                                 </div>
                             </div>
                         </div>

@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -41,5 +42,10 @@ class Document extends Model
     public function products()
     {
         return $this->hasMany(Product::class);
+    }
+
+    public function getImportDateAttribute($value)
+    {
+        return Carbon::parse($value)->format('d/m/Y');
     }
 }

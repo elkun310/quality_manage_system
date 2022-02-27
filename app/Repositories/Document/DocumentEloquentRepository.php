@@ -34,7 +34,7 @@ class DocumentEloquentRepository extends BaseRepository implements DocumentRepos
         DB::beginTransaction();
         try {
             $params = $request->all();
-            $params['import_date'] = Carbon::parse(date('Y-m-d', strtotime($params['import_date'])));
+            $params['import_date'] = \DateTime::createFromFormat("d/m/Y", $params['import_date'])->format("Y-m-d");
             $params['dead_line'] = Carbon::parse(now())->addWeekdays(15)->format('Y-m-d');
             $document = Document::create($params);
 
@@ -50,7 +50,7 @@ class DocumentEloquentRepository extends BaseRepository implements DocumentRepos
             foreach (json_decode($request->reference) as $value) {
                 $reference = new Reference();
                 $reference->name = $value->name;
-                $reference->publish_date = $value->publish_date ? Carbon::parse(date('Y-m-d', strtotime($value->publish_date))) : null;
+                $reference->publish_date = $value->publish_date ? \DateTime::createFromFormat("d/m/Y", $value->publish_date)->format("Y-m-d") : null;
                 $reference->code = $value->code ?: null;
                 $reference->document_id = $document->id;
                 $reference->save();
@@ -90,11 +90,14 @@ class DocumentEloquentRepository extends BaseRepository implements DocumentRepos
     {
         DB::beginTransaction();
         try {
-            $params = $request->all();
-            $params['import_date'] = Carbon::parse(date('Y-m-d', strtotime($params['import_date'])));
-            $params['dead_line'] = Carbon::parse(now())->addWeekdays(15)->format('Y-m-d');
-            $this->update($id, $params);
             $document = $this->model->findOrFail($id);
+            $params = $request->all();
+            $params['import_date'] = \DateTime::createFromFormat("d/m/Y", $params['import_date'])->format("Y-m-d");
+//            dd($params);
+            if ($params['date_extend']) {
+                $params['dead_line'] = Carbon::parse($document['dead_line'])->addWeekdays(15)->format('Y-m-d');
+            }
+            $this->update($id, $params);
             $oldUrl = $document->url;
             //update url and digital code
             if ($request->hasFile('attach_file')) {
@@ -112,7 +115,7 @@ class DocumentEloquentRepository extends BaseRepository implements DocumentRepos
             foreach (json_decode($request->reference) as $value) {
                 $reference = new Reference();
                 $reference->name = $value->name;
-                $reference->publish_date = $value->publish_date ? Carbon::parse(date('Y-m-d', strtotime($value->publish_date))) : null;
+                $reference->publish_date = $value->publish_date ? \DateTime::createFromFormat("d/m/Y", $value->publish_date)->format("Y-m-d") : null;
                 $reference->code = $value->code ?: null;
                 $reference->document_id = $document->id;
                 $reference->save();

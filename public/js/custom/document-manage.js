@@ -164,6 +164,9 @@ $(document).ready(function () {
         let products = documentManage.getDataProduct('.wrapper-product .product-item')
         e.preventDefault();
         let formData = new FormData(this);
+        for (let i of formData){
+            console.log(i, formData[i])
+        }
         formData.append('reference', JSON.stringify(references))
         formData.append('product', JSON.stringify(products))
         $.ajax({

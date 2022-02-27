@@ -75,7 +75,7 @@
                                     <td>{{ $document->name_company }}</td>
                                     <td>{{ $document->digital_code }}</td>
                                     <td>{{ $document->address }}</td>
-                                    <td>{{ \Carbon\Carbon::parse($document->dead_line)->format('d-m-Y') }}</td>
+                                    <td>{{ \Carbon\Carbon::parse($document->dead_line)->format('d/m/Y') }}</td>
                                     <td>
                                         @if($document->dead_line < now()->format('Y-m-d'))
                                             <span class="badge badge-danger">Quá hạn</span>
