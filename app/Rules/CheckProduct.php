@@ -33,23 +33,6 @@ class CheckProduct implements Rule
                 $this->message = $checkProduct;
                 return false;
             }
-//            if ($products[$i]->specification === "" || strlen($products[$i]->specification) >= 255) {
-//                $this->message = 'Đặc tính kỹ thuật của sản phẩm đang nhập sai';
-//                return false;
-//            }
-//            if ($products[$i]->symbol === "" || strlen($products[$i]->symbol) >= 255) {
-//                $this->message = 'Ký hiệu của sản phẩm đang nhập sai';
-//                return false;
-//            }
-//            if ($products[$i]->origin === "" || strlen($products[$i]->origin) >= 255) {
-//                $this->message = 'Xuất xứ, nhà sản xuất của sản phẩm đang nhập sai';
-//                return false;
-//            }
-//            if ($products[$i]->amount === "" || !is_int($products[$i]->amount)) {
-//                $this->message = 'Số lượng của sản phẩm đang nhập sai';
-//                return false;
-//            }
-
         }
         return true;
     }

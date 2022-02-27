@@ -28,6 +28,10 @@ if (!defined('DOCUMENT_EDIT')) {
     define('DOCUMENT_EDIT', 'document.edit');
 }
 
+if (!defined('DOCUMENT_UPDATE')) {
+    define('DOCUMENT_UPDATE', 'document.update');
+}
+
 if (!defined('DOCUMENT_DELETE')) {
     define('DOCUMENT_DELETE', 'document.destroy');
 }
