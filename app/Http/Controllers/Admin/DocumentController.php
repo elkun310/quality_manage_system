@@ -61,7 +61,24 @@ class DocumentController extends Controller
 
     public function edit($id)
     {
-        dd($id, 'sua');
+        return view('admin.documents.edit', [
+            'document' => $this->documentRepository->with(['products', 'references'])->findOrFail($id),
+            'references' => REFERENCES,
+        ]);
+    }
+
+    public function update(CreateDocumentRequest $request, $id)
+    {
+        if ($this->documentRepository->updateDocument($request, $id)) {
+            return response()->json([
+                'status' =>  HTTP_SUCCESS,
+                'message' => 'Cập nhật hồ sơ thành công',
+            ]);
+        }
+        return response()->json([
+            'status' =>  HTTP_BAD_REQUEST,
+            'message' => 'Đã có lỗi xảy ra',
+        ]);
     }
 
     public function destroy($id)

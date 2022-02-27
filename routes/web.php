@@ -27,6 +27,7 @@ Route::prefix('document')->namespace('Admin')->group(function () {
     Route::get('{id}', 'DocumentController@show')->name(DOCUMENT_SHOW);
    Route::post('store', 'DocumentController@store')->name(DOCUMENT_STORE);
    Route::get('edit/{id}', 'DocumentController@edit')->name(DOCUMENT_EDIT);
+   Route::post('update/{id}', 'DocumentController@update')->name(DOCUMENT_UPDATE);
    Route::delete('{id}', 'DocumentController@destroy')->name(DOCUMENT_DELETE);
 });
 

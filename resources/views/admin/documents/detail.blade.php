@@ -70,7 +70,7 @@
                                         <td>{{ $product->origin }}</td>
                                         <td>{{ $product->amount }}</td>
                                         <td>{{ $document->import_gate }}</td>
-                                        <td>{{ \Illuminate\Support\Carbon::parse($document->import_date)->format('d-m-Y') }}</td>
+                                        <td>{{ \Illuminate\Support\Carbon::parse($document->import_date)->format('d/m/Y') }}</td>
 
                                     </tr>
                                 @empty
@@ -93,7 +93,7 @@
                                     @endif
 
                                     @if(isset($reference->publish_date))
-                                        cấp ngày : {{ $reference->publish_date }}
+                                        cấp ngày : {{ \Illuminate\Support\Carbon::parse($reference->publish_date)->format('d/m/Y') }}
                                     @endif
                                 </li>
                             @empty

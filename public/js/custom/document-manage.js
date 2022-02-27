@@ -15,7 +15,7 @@ let documentManage = (function () {
         let products = [];
         $(document).find(element).each(function(){
             let itemProduct = {};
-            itemProduct.name = $(this).find('.name-product').val();
+            itemProduct.name = $(this).find('.name-product').val().trim();
             itemProduct.specification = $(this).find('.specification').val();
             itemProduct.symbol = $(this).find('.symbol').val();
             itemProduct.origin = $(this).find('.origin').val();
@@ -155,4 +155,50 @@ $(document).ready(function () {
     $(document).on('change', '.slt-status', function () {
         $('.filter-document-form').submit();
     })
+
+    //update document
+    $('.document-update').submit(function(e) {
+        documentManage.clearData('.document-update');
+        $('.document-update .btn-submit').prop('disabled', true);
+        let references = documentManage.getDataReference('.wrapper-reference .reference-item.checked')
+        let products = documentManage.getDataProduct('.wrapper-product .product-item')
+        e.preventDefault();
+        let formData = new FormData(this);
+        formData.append('reference', JSON.stringify(references))
+        formData.append('product', JSON.stringify(products))
+        $.ajax({
+            type:'POST',
+            url: '/document/update/'+ $('.document-id').val(),
+            data: formData,
+            contentType: false,
+            dataType: 'JSON',
+            processData: false,
+            success: (data) => {
+                $('.document-update .btn-submit').prop('disabled', false);
+                if(data.status === 200) {
+                    toastr.success(data.message);
+                    setTimeout(() => {
+                        window.location.href = '/document';
+                    }, 1000)
+                } else {
+                    $("html, body").animate({ scrollTop: 0 }, "slow");
+                    toastr.options.preventDuplicates = true;
+                    toastr.error('Đã có lỗi xảy ra');
+                }
+            },
+            error: function(data){
+                $('.document-update .btn-submit').prop('disabled', false);
+                if (data.status === 422) {
+                    documentManage.showMessage('.document-update', data.responseJSON.errors)
+                    $('html, body').animate({
+                        scrollTop: $(`[data-error=${Object.keys(data.responseJSON.errors)[0]}]`).offset().top - 200
+                    }, 1000);
+                } else {
+                    $("html, body").animate({ scrollTop: 0 }, "slow");
+                }
+                toastr.options.preventDuplicates = true;
+                toastr.error('Đã có lỗi xảy ra');
+            }
+        });
+    });
 })
