@@ -48,7 +48,7 @@
                         @endif
                         <h5>Đăng ký kiểm chất lượng hàng hoá sau : </h5>
 
-                        <div class="p-0">
+                        <div class="p-0 table-responsive">
                             <table class="table table-bordered">
                                 <thead>
                                 <tr>
@@ -62,22 +62,37 @@
                                 </tr>
                                 </thead>
                                 <tbody>
+
+                                <tr>
+                                    <td>{{ 1 }}</td>
+                                    <td>{{ $document->products[0]->name. ". Model: ". $document->products[0]->symbol}}</td>
+                                    <td>{{ $document->products[0]->specification }}</td>
+                                    <td>{{ $document->products[0]->origin }}</td>
+                                    <td>{{ $document->products[0]->amount }}</td>
+                                    <td rowspan="{{ $document->products->count() }}" class="td-center">{{ $document->import_gate }}</td>
+                                    <td rowspan="{{ $document->products->count() }}" class="td-center">{{ $document->import_date }}</td>
+                                </tr>
+
+                                @php($document->products->shift())
+                                @if(count($document->products) > 0)
+{{--                                @dd($document->products)--}}
+
                                 @forelse($document->products as $key => $product)
                                     <tr>
-                                        <td>{{ $key+1 }}</td>
+                                        <td>{{ $key+2 }}</td>
                                         <td>{{ $product->name. ". Model: ". $product->symbol}}</td>
                                         <td>{{ $product->specification }}</td>
                                         <td>{{ $product->origin }}</td>
                                         <td>{{ $product->amount }}</td>
-                                        <td>{{ $document->import_gate }}</td>
-                                        <td>{{ $document->import_date }}</td>
-
+{{--                                        <td rowspan="2">{{ $document->import_gate }}</td>--}}
+{{--                                        <td>{{ $document->import_date }}</td>--}}
                                     </tr>
                                 @empty
                                     <tr>
                                         <td class="text-center border-0 text-danger" colspan="7">Không có sản phẩm nào</td>
                                     </tr>
                                 @endforelse
+                                    @endif
                                 </tbody>
                             </table>
                         </div>

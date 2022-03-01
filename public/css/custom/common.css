@@ -144,3 +144,18 @@ input[rule="required"].in-valid {
 .slt-status{
     min-height: 49px;
 }
+
+.td-center {
+    text-align: center;
+    vertical-align: middle !important;
+}
+
+.f-18 {
+    font-size: 18px;
+}
+
+@media only screen and (max-width: 767px) {
+    .slt-status{
+        margin-top: 15px;
+    }
+}

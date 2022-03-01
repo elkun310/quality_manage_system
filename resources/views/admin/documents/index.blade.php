@@ -22,13 +22,11 @@
     <!-- Main content -->
     <section class="content">
         <div class="container-fluid">
-            <h2 class="text-center display-4">Tìm kiếm</h2>
             <form class="filter-document-form" method="get" action="{{ route(DOCUMENT_INDEX) }}">
                 <div class="row">
-                    <div class="col-md-8">
-
+                    <div class="col-md-8 col-sm-12">
                         <div class="input-group">
-                            <input name="search" type="search" class="form-control form-control-lg"
+                            <input name="search" type="search" class="form-control form-control-lg f-18"
                                    value="{{ $param['search'] ?? "" }}" placeholder="Mời nhập tên công ty, mã ký số">
                             <div class="input-group-append">
                                 <button type="submit" class="btn btn-lg btn-default">
@@ -37,7 +35,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-2 offset-md-2">
+                    <div class="col-md-2 col-sm-12">
                         <div class="form-group">
                             <select class="form-control slt-status" name="dead_line">
                                 <option value="{{ ALL }}" @if(isset($param['dead_line']) && $param['dead_line'] === ALL) selected @endif>Tất cả</option>
