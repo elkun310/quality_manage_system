@@ -33,6 +33,6 @@ class Reference extends Model
 
     public function getPublishDateAttribute($value)
     {
-        return Carbon::parse($value)->format('d/m/Y');
+        return $value ? Carbon::parse($value)->format('d/m/Y') : "";
     }
 }

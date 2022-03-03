@@ -93,7 +93,7 @@ class DocumentEloquentRepository extends BaseRepository implements DocumentRepos
             $document = $this->model->findOrFail($id);
             $params = $request->all();
             $params['import_date'] = \DateTime::createFromFormat("d/m/Y", $params['import_date'])->format("Y-m-d");
-//            dd($params);
+
             if ($params['date_extend']) {
                 $params['dead_line'] = Carbon::parse($document['dead_line'])->addWeekdays(15)->format('Y-m-d');
             }

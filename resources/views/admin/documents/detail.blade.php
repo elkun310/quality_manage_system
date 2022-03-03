@@ -107,7 +107,7 @@
                                         Số : {{ $reference->code }},
                                     @endif
 
-                                    @if(isset($reference->publish_date))
+                                    @if($reference->publish_date)
                                         cấp ngày : {{ $reference->publish_date }}
                                     @endif
                                 </li>
