@@ -37,6 +37,7 @@
                 <div class="row invoice-info">
                     <div class="col-sm-12">
                         <p>Người nhập khẩu : <span class="text-bold">{{ $document->name_company }}</span></p>
+                        <p>Ngày đăng ký : {{ $document->register_date }}</p>
                         <p>Địa chỉ : {{ $document->address }}</p>
                         <p>Điện thoại : {{ $document->phone }}</p>
                         <p>Email : {{ $document->email }}</p>
@@ -112,6 +113,10 @@
                                 <p class="text-center border-0 text-danger">Không có tài liệu nào</p>
                             @endforelse
                         </ul>
+                        <hr>
+                        <p>Quy chuẩn : {{ $document->standard }}</p>
+                        <p>Số phiếu tiếp nhận : {{ $document->number_receive }}</p>
+                        <p>Ngày tiếp nhận : {{ $document->date_receive }}</p>
                         <p class="font-weight-bold">
                             Vào sổ đăng ký số : {{ $document->digital_code }}<br/>
                             Ngày : {{ \Carbon\Carbon::parse($document->created_at)->format('d-m-Y') }}

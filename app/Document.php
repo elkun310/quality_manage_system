@@ -32,6 +32,10 @@ class Document extends Model
         'url',
         'dead_line',
         'status',
+        'register_date',
+        'standard',
+        'number_receive',
+        'date_receive',
     ];
 
     public function references()
@@ -45,6 +49,16 @@ class Document extends Model
     }
 
     public function getImportDateAttribute($value)
+    {
+        return Carbon::parse($value)->format('d/m/Y');
+    }
+
+    public function getDateReceiveAttribute($value)
+    {
+        return Carbon::parse($value)->format('d/m/Y');
+    }
+
+    public function getRegisterDateAttribute($value)
     {
         return Carbon::parse($value)->format('d/m/Y');
     }

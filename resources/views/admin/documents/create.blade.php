@@ -131,6 +131,47 @@
                                     </div>
                                     <p class="col-sm-9 text-danger offset-sm-3 no-padding error" data-error="reference"></p>
                                 </div>
+
+                                <!--Thông tin thêm-->
+                                <div class="form-group row">
+                                    <label for="register_date" class="col-sm-3 col-form-label">Ngày tạo hồ sơ</label>
+                                    <div class="input-group col-sm-9 no-padding">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
+                                        </div>
+                                        <input id="register_date" type="text" class="form-control"
+                                               data-inputmask-alias="datetime" data-inputmask-inputformat="dd/mm/yyyy"
+                                               data-mask="" inputmode="numeric" name="register_date" placeholder="dd/mm/yyyy" data-error="register_date">
+                                    </div>
+                                    <p class="col-sm-9 text-danger offset-sm-3 error" data-error="register_date"></p>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label for="standard" class="col-sm-3 col-form-label">Quy chuẩn</label>
+                                    <input required type="text" class="form-control col-sm-9" id="standard"
+                                           placeholder="Nhập quy chuẩn" name="standard" autocomplete="off" data-name="standard">
+                                    <p class="col-sm-9 text-danger offset-sm-3 error" data-error="standard"></p>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label for="number_receive" class="col-sm-3 col-form-label">Số phiếu tiếp nhận</label>
+                                    <input required type="text" class="form-control col-sm-9" id="number_receive"
+                                           placeholder="Nhập số phiếu tiếp nhận" name="number_receive" autocomplete="off" data-name="number_receive">
+                                    <p class="col-sm-9 text-danger offset-sm-3 error" data-error="number_receive"></p>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label for="date_receive" class="col-sm-3 col-form-label">Ngày tiếp nhận</label>
+                                    <div class="input-group col-sm-9 no-padding">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
+                                        </div>
+                                        <input id="date_receive" type="text" class="form-control"
+                                               data-inputmask-alias="datetime" data-inputmask-inputformat="dd/mm/yyyy"
+                                               data-mask="" inputmode="numeric" name="date_receive" placeholder="dd/mm/yyyy" data-error="date_receive">
+                                    </div>
+                                    <p class="col-sm-9 text-danger offset-sm-3 error" data-error="date_receive"></p>
+                                </div>
                             </div>
                         </div>
                     </div>
