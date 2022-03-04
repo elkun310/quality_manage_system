@@ -138,8 +138,8 @@ class DocumentEloquentRepository extends BaseRepository implements DocumentRepos
 
             DB::commit();
             if ($request->hasFile('attach_file')) {
-                if (Storage::disk('public')->exists("attach_files/".$oldUrl)) {
-                    unlink(storage_path('app/public/attach_files/'.$oldUrl));
+                if (Storage::disk('public')->exists("attach_files/" . $oldUrl)) {
+                    unlink(storage_path('app/public/attach_files/' . $oldUrl));
                 }
                 Storage::disk('public')->putFileAs('attach_files', $file, $document->id . '_' . $file->getClientOriginalName());
             }
@@ -159,16 +159,19 @@ class DocumentEloquentRepository extends BaseRepository implements DocumentRepos
         return $this->model
             ->when(isset($param['search']), function ($query) use ($param) {
                 return $query->where('name_company', 'like', '%' . escapeSpecialCharacter($param['search']) . '%')
-                    ->orWhere('digital_code', $param['search'])
+                    ->orWhere('digital_code', 'like', '%' . escapeSpecialCharacter($param['search']) . '%')
                     ->orWhereHas('products', function ($query) use ($param) {
                         $query->where('products.name', 'like', '%' . escapeSpecialCharacter($param['search']) . '%');
                     });
             })
             ->when(isset($param['dead_line']), function ($query) use ($param) {
                 switch ($param['dead_line']) {
-                    case DEAD_LINE_STATUS: return $query->where('dead_line', '<', now()->format('Y-m-d'));
-                    case ACTIVE: return $query->where('dead_line', '>=', now()->format('Y-m-d'));
-                    case ALL: break;
+                    case DEAD_LINE_STATUS:
+                        return $query->where('dead_line', '<', now()->format('Y-m-d'));
+                    case ACTIVE:
+                        return $query->where('dead_line', '>=', now()->format('Y-m-d'));
+                    case ALL:
+                        break;
                 }
             })
             ->orderBy('id', 'desc')
