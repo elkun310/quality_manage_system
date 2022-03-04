@@ -286,5 +286,8 @@
     </section>
 @endsection
 @section('js')
+    <script>
+        const nameProductExample = {!! json_encode($nameProductExample) !!};
+    </script>
     <script src="{{ asset('js/custom/document-manage.js') }}"></script>
 @endsection

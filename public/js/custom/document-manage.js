@@ -201,4 +201,22 @@ $(document).ready(function () {
             }
         });
     });
+
+    $(document).on('click', '.btn-filter-name', function() {
+        console.log($('[name=tags]').val(),JSON.parse($('[name=tags]').val())[0].value, 123)
+        let $nameProduct = $(document).find('.name-product');
+        $nameProduct.text('');
+        $nameProduct.text($('[name=tags]').val() ? JSON.parse($('[name=tags]').val())[0].value : '');
+    })
+    let input = document.querySelector('input[name="tags"]');
+    let tagify = new Tagify(input, {
+        whitelist:nameProductExample,
+        maxTags: 10,
+        dropdown: {
+            maxItems: 20,
+            classname: "tags-look",
+            enabled: 0,
+            closeOnSelect: false
+        }
+    })
 })

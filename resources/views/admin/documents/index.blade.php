@@ -24,6 +24,12 @@
         <div class="container-fluid">
             <form class="filter-document-form" method="get" action="{{ route(DOCUMENT_INDEX) }}">
                 <div class="row">
+                    <div class="col-md-10 col-sm-12"></div>
+                    <div class="col-md-2 col-sm-12 mb-sm-3">
+                        <a class="btn btn-info float-md-right" href="{{ route(DOCUMENT_CREATE) }}">
+                            Thêm hồ sơ
+                        </a>
+                    </div>
                     <div class="col-md-8 col-sm-12">
                         <div class="input-group">
                             <input name="search" type="search" class="form-control form-control-lg f-18"
@@ -132,5 +138,8 @@
 
 @endsection
 @section('js')
+    <script>
+        const nameProductExample = {!! json_encode($nameProductExample) !!};
+    </script>
     <script src="{{ asset('js/custom/document-manage.js') }}"></script>
 @endsection

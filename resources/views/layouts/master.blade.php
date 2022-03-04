@@ -27,6 +27,7 @@
     <link rel="stylesheet" href={{ asset('css/daterangepicker.css') }}>
     <link rel="stylesheet" href={{ asset('css/custom/common.css') }}>
     <link rel="stylesheet" href="{{ asset('plugins/toastr/toastr.min.css') }}">
+    <link href="{{ asset('plugins/tagify/tagify.css') }}" rel="stylesheet" type="text/css" />
 
     @yield('styles')
 
@@ -54,6 +55,8 @@
     <script src={{ asset('js/bs-custom-file-input.min.js') }}></script>
     <script src={{ asset('js/custom/common.js') }}></script>
     <script src="{{ asset('plugins/toastr/toastr.min.js') }}"></script>
+    <script src="{{ asset('plugins/tagify/tagify.min.js') }}"></script>
+    <script src="{{ asset('plugins/tagify/tagify.polyfills.min.js') }}"></script>
     @yield('script-files')
 </head>
 <body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed">
