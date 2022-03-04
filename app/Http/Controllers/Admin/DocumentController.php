@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CreateDocumentRequest;
+use App\NameProductSample;
 use App\Repositories\Document\DocumentRepositoryInterface;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -25,9 +26,11 @@ class DocumentController extends Controller
     public function index(Request $request)
     {
         $param = $request->all();
+        $nameProductExample = NameProductSample::pluck('name');
         return view('admin.documents.index', [
             'documents' => $this->documentRepository->getList($param),
-            'param' => $param
+            'param' => $param,
+            'nameProductExample' => $nameProductExample,
         ]);
     }
 
@@ -41,7 +44,8 @@ class DocumentController extends Controller
     public function create()
     {
         $references = REFERENCES;
-        return view('admin.documents.create', compact('references'));
+        $nameProductExample = NameProductSample::pluck('name');
+        return view('admin.documents.create', compact('references', 'nameProductExample'));
     }
 
     public function store(CreateDocumentRequest $request)
@@ -61,9 +65,11 @@ class DocumentController extends Controller
 
     public function edit($id)
     {
+        $nameProductExample = NameProductSample::pluck('name');
         return view('admin.documents.edit', [
             'document' => $this->documentRepository->with(['products', 'references'])->findOrFail($id),
             'references' => REFERENCES,
+            'nameProductExample' => $nameProductExample,
         ]);
     }
 

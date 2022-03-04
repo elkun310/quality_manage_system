@@ -146,7 +146,9 @@
                             <div class="card-body">
                                 <div class="form-group row">
                                     <label for="name" class="col-sm-3 col-form-label">Tên hàng hoá</label>
-                                    <textarea id="name" class="form-control col-sm-9 name-product" rows="2" placeholder="Nhập tên hàng hoá"></textarea>
+                                    <input name='tags' class='form-control col-sm-7 product-name-sample' placeholder='Mời gõ' value=''>
+                                    <button type="button" class="btn btn-info col-sm-1 offset-sm-1 btn-filter-name">Nhập</button>
+                                    <textarea id="name" class="form-control col-sm-9 name-product offset-sm-3 mt-3" rows="2" placeholder="Nhập tên hàng hoá"></textarea>
                                 </div>
 
                                 <div class="form-group row">
@@ -186,5 +188,8 @@
     </section>
 @endsection
 @section('js')
+    <script>
+        const nameProductExample = {!! json_encode($nameProductExample) !!};
+    </script>
     <script src="{{ asset('js/custom/document-manage.js') }}"></script>
 @endsection
