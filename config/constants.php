@@ -38,7 +38,6 @@ if (!defined('DOCUMENT_DELETE')) {
 
 if (!defined('REFERENCES')) {
     define('REFERENCES', [
-        'Giấy đăng ký kiểm tra chất lượng hàng hóa nhập khẩu',
         'Hợp đồng (bản sao)',
         'Danh mục hàng hóa (Packing list) kèm theo hợp đồng (bản sao)',
         'Giấy chứng nhận hợp quy',
@@ -53,7 +52,7 @@ if (!defined('REFERENCES')) {
 }
 
 if (!defined('DIGITAL_NAMESPACE')) {
-    define('DIGITAL_NAMESPACE', '/CTV-TT2');
+    define('DIGITAL_NAMESPACE', '/CVT-CNDV');
 }
 
 if (!defined('HTTP_SUCCESS')) {

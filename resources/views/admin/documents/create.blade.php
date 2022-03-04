@@ -88,7 +88,7 @@
                                 </div>
 
                                 <div class="form-group row">
-                                    <label for="attach_file" class="col-sm-3 col-form-label">File đính kèm (nếu có)</label>
+                                    <label for="attach_file" class="col-sm-3 col-form-label">Giấy đăng ký đã xác nhận</label>
                                     <div class="input-group col-sm-9 no-padding">
                                         <div class="custom-file">
                                             <input type="file" class="custom-file-input" id="attach_file" name="attach_file" data-error="attach_file">

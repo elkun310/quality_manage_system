@@ -115,7 +115,7 @@
 
                                 <!--Tài liệu đính kèm-->
                                 <div class="form-group row">
-                                    <label for="references" class="col-sm-3 col-form-label">Tài liệu kèm theo</label>
+                                    <label for="references" class="col-sm-3 col-form-label">Giấy đăng ký đã xác nhận</label>
                                     <div class="col-sm-9 no-padding wrapper-reference">
                                         @foreach($references as $key => $value)
                                             <div class="form-check reference-item @if($document->references->where('name', $value)->isNotEmpty()) checked @endif">

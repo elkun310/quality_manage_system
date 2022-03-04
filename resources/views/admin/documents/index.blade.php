@@ -95,15 +95,15 @@
                                             Sửa
                                         </a>
 
-                                        <form action="{{ route(DOCUMENT_DELETE, $document->id) }}" method="POST" >
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit"  class="btn btn-danger btn-sm mb-2" onclick="return confirm('Bạn có chắc chắn muốn xoá hồ sơ này không ? ')">
-                                                <i class="fas fa-trash">
-                                                </i>
-                                                Xoá
-                                            </button>
-                                        </form>
+{{--                                        <form action="{{ route(DOCUMENT_DELETE, $document->id) }}" method="POST" >--}}
+{{--                                            @csrf--}}
+{{--                                            @method('DELETE')--}}
+{{--                                            <button type="submit"  class="btn btn-danger btn-sm mb-2" onclick="return confirm('Bạn có chắc chắn muốn xoá hồ sơ này không ? ')">--}}
+{{--                                                <i class="fas fa-trash">--}}
+{{--                                                </i>--}}
+{{--                                                Xoá--}}
+{{--                                            </button>--}}
+{{--                                        </form>--}}
                                     </td>
                                 </tr>
                             @empty
@@ -120,7 +120,7 @@
                         @if($documents->total() > PAGINATE_DEFAULT)
                             {{ $documents->appends($param)->links() }}
                         @endif
-                            <p>Tổng số hoá đơn : {{ $documents->total() }}</p>
+                            <p>Tổng số giấy đăng ký : {{ $documents->total() }}</p>
                     </div>
                 </div>
                 <!-- /.card -->

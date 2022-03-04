@@ -31,7 +31,7 @@ class CreateDocumentRequest extends FormRequest
             'phone' => 'required|max:255',
             'email' => 'required|max:255|email',
             'import_gate' => 'required|max:255',
-            'import_date' => 'required|max:255|date_format:d/m/Y|before:tomorrow',
+            'import_date' => 'required|max:255|date_format:d/m/Y',
             'attach_file' => 'nullable|mimes:pdf,doc,docx|max:5000',
             'reference' => [ new CheckReference() ],
             'product' => new CheckProduct(),

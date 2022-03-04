@@ -75,7 +75,6 @@
 
                                 @php($document->products->shift())
                                 @if(count($document->products) > 0)
-{{--                                @dd($document->products)--}}
 
                                 @forelse($document->products as $key => $product)
                                     <tr>
@@ -84,8 +83,6 @@
                                         <td>{{ $product->specification }}</td>
                                         <td>{{ $product->origin }}</td>
                                         <td>{{ $product->amount }}</td>
-{{--                                        <td rowspan="2">{{ $document->import_gate }}</td>--}}
-{{--                                        <td>{{ $document->import_date }}</td>--}}
                                     </tr>
                                 @empty
                                     <tr>
@@ -115,6 +112,10 @@
                                 <p class="text-center border-0 text-danger">Không có tài liệu nào</p>
                             @endforelse
                         </ul>
+                        <p class="font-weight-bold">
+                            Vào sổ đăng ký số : {{ $document->digital_code }}<br/>
+                            Ngày : {{ \Carbon\Carbon::parse($document->created_at)->format('d-m-Y') }}
+                        </p>
                     </div>
                 </div>
             </div>
