@@ -16,6 +16,10 @@ if (!defined('DOCUMENT_CREATE')) {
     define('DOCUMENT_CREATE', 'document.create');
 }
 
+if (!defined('DOCUMENT_CHANGE_PUBLISH')) {
+    define('DOCUMENT_CHANGE_PUBLISH', 'document.change_publish');
+}
+
 if (!defined('DOCUMENT_STORE')) {
     define('DOCUMENT_STORE', 'document.store');
 }
@@ -85,4 +89,12 @@ if (!defined('ACTIVE')) {
 
 if (!defined('ALL')) {
     define('ALL', "null");
+}
+
+if (!defined('IS_PUBLISH')) {
+    define('IS_PUBLISH', 1);
+}
+
+if (!defined('NOT_PUBLISH')) {
+    define('NOT_PUBLISH', 0);
 }

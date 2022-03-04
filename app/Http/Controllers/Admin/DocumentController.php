@@ -91,4 +91,27 @@ class DocumentController extends Controller
         }
         return redirect()->route(DOCUMENT_INDEX)->with('error-flash', 'Đã có lỗi xảy ra');
     }
+
+
+    public function changePublish($id)
+    {
+        $document = $this->documentRepository->findOrFail($id);
+        if($document) {
+            try {
+                $document->is_publish = !$document->is_publish;
+                $document->save();
+                return response()->json([
+                    'status' =>  HTTP_SUCCESS,
+                    'message' => 'Chuyển trạng thái thành công',
+                ]);
+            } catch(\Exception $exception) {
+                report($exception);
+                return redirect()->route(DOCUMENT_INDEX)->with('error-flash', 'Đã có lỗi xảy ra');
+            }
+        }
+        return response()->json([
+            'status' =>  HTTP_BAD_REQUEST,
+            'message' => 'Đã có lỗi xảy ra',
+        ]);
+    }
 }

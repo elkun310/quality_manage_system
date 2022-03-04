@@ -201,4 +201,26 @@ $(document).ready(function () {
             }
         });
     });
+
+    //change publish
+    $(document).on('change', '.change-publish', function () {
+        let idDocument = $(this).val();
+        $.ajax({
+            type:'GET',
+            url: '/document/change-publish/' + idDocument,
+            success: (data) => {
+                if(data.status === 200) {
+                    toastr.success(data.message);
+                    setTimeout(() => {
+                        window.location.href = '/document';
+                    }, 700)
+                } else {
+                    toastr.error('Đã có lỗi xảy ra');
+                }
+            },
+            error: function(data){
+                toastr.error('Đã có lỗi xảy ra');
+            }
+        })
+    })
 })

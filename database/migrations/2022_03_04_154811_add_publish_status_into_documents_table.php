@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddSomeColumnsIntoDocumentsTable extends Migration
+class AddPublishStatusIntoDocumentsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,10 +14,7 @@ class AddSomeColumnsIntoDocumentsTable extends Migration
     public function up()
     {
         Schema::table('documents', function (Blueprint $table) {
-            $table->date('register_date')->after('status');
-            $table->string('standard')->after('status');
-            $table->string('number_receive')->after('status');
-            $table->date('date_receive')->after('status');
+            $table->boolean('is_publish')->default(0)->comment('0: not_publish, 1:publish')->after('url');
         });
     }
 
@@ -29,10 +26,7 @@ class AddSomeColumnsIntoDocumentsTable extends Migration
     public function down()
     {
         Schema::table('documents', function (Blueprint $table) {
-            $table->dropColumn('register_date');
-            $table->dropColumn('standard');
-            $table->dropColumn('number_receive');
-            $table->dropColumn('date_receive');
+            $table->dropColumn('is_publish');
         });
     }
 }

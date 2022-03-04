@@ -67,6 +67,7 @@
                                 <th>Địa chỉ</th>
                                 <th>Ngày quá hạn</th>
                                 <th>Tình trạng</th>
+                                <th>Xuất giấy</th>
                                 <th></th>
                             </tr>
                             </thead>
@@ -86,18 +87,26 @@
                                         @endif
                                     </td>
                                     <td>
+                                        <div class="custom-control custom-checkbox">
+                                            <input @if($document->is_publish === IS_PUBLISH) checked @endif class="custom-control-input change-publish" type="checkbox" id="{{"document-".$document->id}}" value="{{ $document->id }}">
+                                            <label for="{{"document-".$document->id}}" class="custom-control-label"></label>
+                                        </div>
+                                    </td>
+                                    <td>
                                         <a href="{{ route(DOCUMENT_SHOW, $document->id) }}"
                                            class="btn btn-primary btn-sm mb-2">
                                             <i class="fas fa-eye">
                                             </i>
                                             Xem
                                         </a>
-                                        <a class="btn btn-info btn-sm mb-2"
-                                           href="{{ route(DOCUMENT_EDIT, $document->id) }}">
-                                            <i class="fas fa-pencil-alt">
-                                            </i>
-                                            Sửa
-                                        </a>
+                                        @if($document->is_publish === NOT_PUBLISH)
+                                            <a class="btn btn-info btn-sm mb-2"
+                                               href="{{ route(DOCUMENT_EDIT, $document->id) }}">
+                                                <i class="fas fa-pencil-alt">
+                                                </i>
+                                                Sửa
+                                            </a>
+                                        @endif
 
 {{--                                        <form action="{{ route(DOCUMENT_DELETE, $document->id) }}" method="POST" >--}}
 {{--                                            @csrf--}}

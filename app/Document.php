@@ -36,6 +36,7 @@ class Document extends Model
         'standard',
         'number_receive',
         'date_receive',
+        'is_publish',
     ];
 
     public function references()
