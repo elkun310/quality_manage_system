@@ -24,6 +24,11 @@
         <div class="container-fluid">
             <form class="filter-document-form" method="get" action="{{ route(DOCUMENT_INDEX) }}">
                 <div class="row">
+                    <div class="col-md-10 col-sm-12"></div>
+                    <div class="col-md-2 col-sm-12 mb-sm-3">
+                        <a href="{{route(DOCUMENT_CREATE)}}" class="btn btn-info float-md-right">
+                        Thêm hồ sơ</a>
+                    </div>
                     <div class="col-md-8 col-sm-12">
                         <div class="input-group">
                             <input name="search" type="search" class="form-control form-control-lg f-18"
@@ -35,7 +40,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-2 col-sm-12">
+                    <div class="col-md-3 col-sm-12">
                         <div class="form-group">
                             <select class="form-control slt-status" name="dead_line">
                                 <option value="{{ ALL }}" @if(isset($param['dead_line']) && $param['dead_line'] === ALL) selected @endif>Tất cả</option>
@@ -47,7 +52,6 @@
                 </div>
 
             </form>
-
             <br><br>
 
             <div class="col-md-12">

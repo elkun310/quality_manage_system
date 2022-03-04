@@ -43,7 +43,7 @@
                         <p>Ngày hết hạn : {{ \Carbon\Carbon::parse($document->dead_line)->format('d-m-Y') }}</p>
                         @if($document->url)
                         <p>File đính kèm:
-                            <a target="_blank" href="{{Illuminate\Support\Facades\Storage::disk('public')->url('attach_files/'. $document->url)}}">Xem</a>
+                            <a target="_blank" href="{{asset('storage/attach_files/' . $document->url)}}">Xem</a>
                         </p>
                         @endif
                         <h5>Đăng ký kiểm chất lượng hàng hoá sau : </h5>
