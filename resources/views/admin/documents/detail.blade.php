@@ -43,7 +43,7 @@
                         <p>Email : {{ $document->email }}</p>
                         <p>Ngày hết hạn : {{ \Carbon\Carbon::parse($document->dead_line)->format('d-m-Y') }}</p>
                         @if($document->url)
-                        <p>File đính kèm:
+                        <p>File giấy đăng ký được xác nhận (đính kèm) : 
                             <a target="_blank" href="{{asset('storage/attach_files/' . $document->url)}}">Xem</a>
                         </p>
                         @endif
@@ -67,7 +67,7 @@
                                 <tr>
                                     <td>{{ 1 }}</td>
                                     <td>{{ $document->products[0]->name. ". Model: ". $document->products[0]->symbol}}</td>
-                                    <td>{{ $document->products[0]->specification }}</td>
+                                    <td>{{ $document->products[0]->specification }} <br> {{ $document->products[0]->standard }}</td>
                                     <td>{{ $document->products[0]->origin }}</td>
                                     <td>{{ $document->products[0]->amount }}</td>
                                     <td rowspan="{{ $document->products->count() }}" class="td-center">{{ $document->import_gate }}</td>
@@ -81,7 +81,7 @@
                                     <tr>
                                         <td>{{ $key+2 }}</td>
                                         <td>{{ $product->name. ". Model: ". $product->symbol}}</td>
-                                        <td>{{ $product->specification }}</td>
+                                        <td>{{ $product->specification }} <br> {{ $product->standard }}</td>
                                         <td>{{ $product->origin }}</td>
                                         <td>{{ $product->amount }}</td>
                                     </tr>
@@ -114,9 +114,7 @@
                             @endforelse
                         </ul>
                         <hr>
-                        <p>Quy chuẩn : {{ $document->standard }}</p>
-                        <p>Số phiếu tiếp nhận : {{ $document->number_receive }}</p>
-                        <p>Ngày tiếp nhận : {{ $document->date_receive }}</p>
+                        <p>Số phiếu tiếp nhận của trung tâm ĐLCL : {{ $document->number_receive }} . Ngày tiếp nhận : {{ $document->date_receive }}</p>
                         <p class="font-weight-bold">
                             Vào sổ đăng ký số : {{ $document->digital_code }}<br/>
                             Ngày : {{ \Carbon\Carbon::parse($document->created_at)->format('d-m-Y') }}

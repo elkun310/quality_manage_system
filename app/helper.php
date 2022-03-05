@@ -72,6 +72,9 @@ if (!function_exists('checkValidateProduct')) {
         if ($value->name === "" || strlen($value->name) >= 255) {
             return 'Tên của sản phẩm đang nhập sai';
         }
+        if ($value->standard === "" || strlen($value->standard) >= 255) {
+            return 'Quy chuẩn của sản phẩm đang nhập sai';
+        }
         if ($value->specification === "" || strlen($value->specification) >= 255) {
             return 'Đặc tính kỹ thuật của sản phẩm đang nhập sai';
         }

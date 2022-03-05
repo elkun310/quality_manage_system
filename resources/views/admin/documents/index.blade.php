@@ -32,7 +32,7 @@
                     <div class="col-md-8 col-sm-12">
                         <div class="input-group">
                             <input name="search" type="search" class="form-control form-control-lg f-18"
-                                   value="{{ $param['search'] ?? "" }}" placeholder="Mời nhập tên công ty, mã ký số">
+                                   value="{{ $param['search'] ?? "" }}" placeholder="Mời nhập tên công ty, vào sổ đăng ký số, ký hiệu, xuất xứ, quy chuẩn">
                             <div class="input-group-append">
                                 <button type="submit" class="btn btn-lg btn-default">
                                     <i class="fa fa-search"></i>
@@ -63,8 +63,10 @@
                             <tr>
                                 <th style="width: 10px">STT</th>
                                 <th>Tên công ty</th>
-                                <th>Mã ký số</th>
-                                <th>Địa chỉ</th>
+                                <th>Vào sổ đăng ký số </th>
+                                <th>Quy chuẩn</th>
+                                <th>Xuất xứ, hãng sản xuất</th>
+                                <th>Ký hiệu</th>
                                 <th>Ngày quá hạn</th>
                                 <th>Tình trạng</th>
                                 <th>Xuất giấy</th>
@@ -77,7 +79,21 @@
                                     <td>{{ $documents->currentPage() * $documents->perPage() - $documents->perPage() + $key +1 }}</td>
                                     <td>{{ $document->name_company }}</td>
                                     <td>{{ $document->digital_code }}</td>
-                                    <td>{{ $document->address }}</td>
+                                    <td>
+                                        @for($i = 0; $i < count($document->products); $i ++)
+                                            {{ $document->products[$i]->standard }} <br>
+                                        @endfor
+                                    </td>
+                                    <td>
+                                        @for($i = 0; $i < count($document->products); $i ++)
+                                            {{ $document->products[$i]->origin }} <br>
+                                        @endfor
+                                    </td>
+                                    <td>
+                                        @for($i = 0; $i < count($document->products); $i ++)
+                                            {{ $document->products[$i]->symbol }} <br>
+                                        @endfor
+                                    </td>
                                     <td>{{ \Carbon\Carbon::parse($document->dead_line)->format('d/m/Y') }}</td>
                                     <td>
                                         @if($document->dead_line < now()->format('Y-m-d'))

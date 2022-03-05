@@ -24,6 +24,7 @@ class Product extends Model
         'symbol',
         'origin',
         'amount',
+        'standard',
         'document_id',
     ];
 

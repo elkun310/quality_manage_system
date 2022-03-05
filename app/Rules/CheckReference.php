@@ -32,10 +32,10 @@ class CheckReference implements Rule
                 $this->message = "Độ dài code hơn 255 ký tự";
                 return false;
             }
-            if (Carbon::createFromFormat('d/m/Y', $references[$i]->publish_date)->gt(now()->format('d/m/Y'))) {
-                $this->message = "Thời gian không vượt quá ngày hiện tại";
-                return false;
-            }
+            // if (Carbon::createFromFormat('d/m/Y', $references[$i]->publish_date)->gt(now()->format('d/m/Y'))) {
+            //     $this->message = "Thời gian không vượt quá ngày hiện tại";
+            //     return false;
+            // }
         }
         return true;
     }

@@ -17,6 +17,7 @@ let documentManage = (function () {
             let itemProduct = {};
             itemProduct.name = $(this).find('.name-product').val().trim();
             itemProduct.specification = $(this).find('.specification').val();
+            itemProduct.standard = $(this).find('.standard').val();
             itemProduct.symbol = $(this).find('.symbol').val();
             itemProduct.origin = $(this).find('.origin').val();
             itemProduct.amount = $(this).find('.amount').val();
@@ -68,6 +69,12 @@ $(document).ready(function () {
                                 <div class="form-group row">
                                     <label for="name" class="col-sm-3 col-form-label">Tên hàng hoá</label>
                                     <textarea id="name" class="form-control col-sm-9 name-product" rows="2" placeholder="Nhập tên hàng hoá"></textarea>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label for="standard" class="col-sm-3 col-form-label">Quy chuẩn</label>
+                                    <input required type="text" class="form-control col-sm-9 standard" id="standard"
+                                       placeholder="Nhập quy chuẩn" name="standard" autocomplete="off" data-name="standard">
                                 </div>
 
                                 <div class="form-group row">

@@ -162,7 +162,7 @@
 
                                 <!--Thông tin thêm-->
                                 <div class="form-group row">
-                                    <label for="register_date" class="col-sm-3 col-form-label">Ngày tạo hồ sơ</label>
+                                    <label for="register_date" class="col-sm-3 col-form-label">Ngày đăng ký của doanh nghiệp</label>
                                     <div class="input-group col-sm-9 no-padding">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
@@ -177,16 +177,7 @@
                                 </div>
 
                                 <div class="form-group row">
-                                    <label for="standard" class="col-sm-3 col-form-label">Quy chuẩn</label>
-                                    <input required type="text" class="form-control col-sm-9" id="standard"
-                                           placeholder="Nhập quy chuẩn" name="standard" autocomplete="off" data-name="standard"
-                                           value="{{ $document->standard }}"
-                                    >
-                                    <p class="col-sm-9 text-danger offset-sm-3 error" data-error="standard"></p>
-                                </div>
-
-                                <div class="form-group row">
-                                    <label for="number_receive" class="col-sm-3 col-form-label">Số phiếu tiếp nhận</label>
+                                    <label for="number_receive" class="col-sm-3 col-form-label">Số phiếu tiếp nhận của trung tâm ĐLCL</label>
                                     <input required type="text" class="form-control col-sm-9" id="number_receive"
                                            placeholder="Nhập số phiếu tiếp nhận" name="number_receive" autocomplete="off" data-name="number_receive"
                                            value="{{ $document->number_receive }}"
@@ -243,6 +234,14 @@
                                 </div>
 
                                 <div class="form-group row">
+                                    <label for="standard" class="col-sm-3 col-form-label">Quy chuẩn</label>
+                                    <input required type="text" class="form-control col-sm-9 standard" id="standard"
+                                           placeholder="Nhập quy chuẩn" name="standard" autocomplete="off" data-name="standard"
+                                           value="{{ count($document->products) > 0 ? $document->products[0]->standard : "" }}"
+                                    >
+                                </div>
+
+                                <div class="form-group row">
                                     <label for="specification" class="col-sm-3 col-form-label">Đặc tính kỹ thuật</label>
                                     <input required type="text" class="form-control col-sm-9 specification"
                                            id="specification"
@@ -286,6 +285,14 @@
                                             <label for="name" class="col-sm-3 col-form-label">Tên hàng hoá</label>
                                             <textarea id="name" class="form-control col-sm-9 name-product" rows="2"
                                                       placeholder="Nhập tên hàng hoá">{{ $product->name }}</textarea>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <label for="standard" class="col-sm-3 col-form-label">Quy chuẩn</label>
+                                            <input required type="text" class="form-control col-sm-9 standard" id="standard"
+                                                   placeholder="Nhập quy chuẩn" name="standard" autocomplete="off" data-name="standard"
+                                                   value="{{ $product->standard }}"
+                                            >
                                         </div>
 
                                         <div class="form-group row">

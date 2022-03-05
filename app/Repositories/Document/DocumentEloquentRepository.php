@@ -62,6 +62,7 @@ class DocumentEloquentRepository extends BaseRepository implements DocumentRepos
             foreach (json_decode($request->product) as $value) {
                 $product = new Product();
                 $product->name = $value->name;
+                $product->standard = $value->standard;
                 $product->specification = $value->specification;
                 $product->symbol = $value->symbol;
                 $product->origin = $value->origin;
@@ -132,6 +133,7 @@ class DocumentEloquentRepository extends BaseRepository implements DocumentRepos
             foreach (json_decode($request->product) as $value) {
                 $product = new Product();
                 $product->name = $value->name;
+                $product->standard = $value->standard;
                 $product->specification = $value->specification;
                 $product->symbol = $value->symbol;
                 $product->origin = $value->origin;
@@ -142,7 +144,7 @@ class DocumentEloquentRepository extends BaseRepository implements DocumentRepos
 
             DB::commit();
             if ($request->hasFile('attach_file')) {
-                if (Storage::disk('public')->exists("attach_files/" . $oldUrl)) {
+                if ($oldUrl & Storage::disk('public')->exists("attach_files/" . $oldUrl)) {
                     unlink(storage_path('app/public/attach_files/' . $oldUrl));
                 }
                 Storage::disk('public')->putFileAs('attach_files', $file, $document->id . '_' . $file->getClientOriginalName());
@@ -164,9 +166,11 @@ class DocumentEloquentRepository extends BaseRepository implements DocumentRepos
             ->when(isset($param['search']), function ($query) use ($param) {
                 return $query->where('name_company', 'like', '%' . escapeSpecialCharacter($param['search']) . '%')
                     ->orWhere('digital_code', 'like', '%' . escapeSpecialCharacter($param['search']) . '%')
-                    ->orWhere('standard', 'like', '%' . escapeSpecialCharacter($param['search']) . '%')
                     ->orWhereHas('products', function ($query) use ($param) {
                         $query->where('products.symbol', 'like', '%' . escapeSpecialCharacter($param['search']) . '%');
+                    })
+                    ->orWhereHas('products', function ($query) use ($param) {
+                        $query->where('products.standard', 'like', '%' . escapeSpecialCharacter($param['search']) . '%');
                     })
                     ->orWhereHas('products', function ($query) use ($param) {
                         $query->where('products.origin', 'like', '%' . escapeSpecialCharacter($param['search']) . '%');

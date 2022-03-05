@@ -33,7 +33,6 @@ class Document extends Model
         'dead_line',
         'status',
         'register_date',
-        'standard',
         'number_receive',
         'date_receive',
         'is_publish',

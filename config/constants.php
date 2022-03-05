@@ -49,7 +49,7 @@ if (!defined('REFERENCES')) {
         'Hóa đơn (Invoice)',
         'Vận đơn (Bill of Lading)',
         'Tờ khai hàng hóa nhập khẩu',
-        'Ảnh hoặc bản mô tả hàng hóa',
+        'Ảnh hoặc bản mô tả hàng hóa (tài liệu kỹ thuật)',
         'Mẫu nhãn hàng nhập khẩu đã được gắn dấu hợp quy',
         'Nhãn phụ (nếu nhãn chính chưa đủ nội dung theo quy định)',
     ]);
