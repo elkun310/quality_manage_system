@@ -20,6 +20,10 @@ if (!defined('DOCUMENT_CHANGE_PUBLISH')) {
     define('DOCUMENT_CHANGE_PUBLISH', 'document.change_publish');
 }
 
+if (!defined('DOCUMENT_EXPORT_PDF')) {
+    define('DOCUMENT_EXPORT_PDF', 'document.export_pdf');
+}
+
 if (!defined('DOCUMENT_STORE')) {
     define('DOCUMENT_STORE', 'document.store');
 }

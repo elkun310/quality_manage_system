@@ -115,6 +115,7 @@
                                             </i>
                                             Xem
                                         </a>
+
                                         @if($document->is_publish === NOT_PUBLISH)
                                             <a class="btn btn-info btn-sm mb-2"
                                                href="{{ route(DOCUMENT_EDIT, $document->id) }}">
@@ -124,15 +125,17 @@
                                             </a>
                                         @endif
 
-{{--                                        <form action="{{ route(DOCUMENT_DELETE, $document->id) }}" method="POST" >--}}
-{{--                                            @csrf--}}
-{{--                                            @method('DELETE')--}}
-{{--                                            <button type="submit"  class="btn btn-danger btn-sm mb-2" onclick="return confirm('Bạn có chắc chắn muốn xoá hồ sơ này không ? ')">--}}
-{{--                                                <i class="fas fa-trash">--}}
-{{--                                                </i>--}}
-{{--                                                Xoá--}}
-{{--                                            </button>--}}
-{{--                                        </form>--}}
+                                        @if($document->is_publish === NOT_PUBLISH)
+                                            <form action="{{ route(DOCUMENT_DELETE, $document->id) }}" method="POST" >
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit"  class="btn btn-danger btn-sm mb-2" onclick="return confirm('Bạn có chắc chắn muốn xoá hồ sơ này không ? ')">
+                                                    <i class="fas fa-trash">
+                                                    </i>
+                                                    Xoá
+                                                </button>
+                                            </form>
+                                        @endif
                                     </td>
                                 </tr>
                             @empty

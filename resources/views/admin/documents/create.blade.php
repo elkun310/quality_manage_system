@@ -165,6 +165,26 @@
                                     </div>
                                     <p class="col-sm-9 text-danger offset-sm-3 error" data-error="date_receive"></p>
                                 </div>
+
+                                <div class="form-group row">
+                                    <label for="number_receive_tech" class="col-sm-3 col-form-label">Số phiếu tiếp nhận của phòng CNDV</label>
+                                    <input required type="text" class="form-control col-sm-9" id="number_receive_tech"
+                                           placeholder="Nhập số phiếu tiếp nhận của phòng CNDV" name="number_receive_tech" autocomplete="off" data-name="number_receive_tech">
+                                    <p class="col-sm-9 text-danger offset-sm-3 error" data-error="number_receive_tech"></p>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label for="date_receive_tech" class="col-sm-3 col-form-label">Ngày tiếp nhận của phòng CNDV</label>
+                                    <div class="input-group col-sm-9 no-padding">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
+                                        </div>
+                                        <input id="date_receive_tech" type="text" class="form-control"
+                                               data-inputmask-alias="datetime" data-inputmask-inputformat="dd/mm/yyyy"
+                                               data-mask="" inputmode="numeric" name="date_receive_tech" placeholder="dd/mm/yyyy" data-error="date_receive_tech">
+                                    </div>
+                                    <p class="col-sm-9 text-danger offset-sm-3 error" data-error="date_receive_tech"></p>
+                                </div>
                             </div>
                         </div>
                     </div>

@@ -5,8 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CreateDocumentRequest;
 use App\Repositories\Document\DocumentRepositoryInterface;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 class DocumentController extends Controller
 {
@@ -34,7 +34,7 @@ class DocumentController extends Controller
     public function show($id)
     {
         return view('admin.documents.detail', [
-            'document' => $this->documentRepository->with(['products', 'references'])->where('id', $id)->first()
+            'document' => $this->documentRepository->with(['products', 'references'])->findOrFail($id)
         ]);
     }
 
@@ -113,5 +113,12 @@ class DocumentController extends Controller
             'status' =>  HTTP_BAD_REQUEST,
             'message' => 'Đã có lỗi xảy ra',
         ]);
+    }
+
+    public function exportPdf($id)
+    {
+        $document = $this->documentRepository->with(['products', 'references'])->findOrFail($id);
+        $pdf = PDF::loadView('admin.documents.export_pdf', compact('document'));
+        return $pdf->download('document.pdf');
     }
 }

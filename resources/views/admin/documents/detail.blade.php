@@ -119,6 +119,7 @@
                             Vào sổ đăng ký số : {{ $document->digital_code }}<br/>
                             Ngày : {{ \Carbon\Carbon::parse($document->created_at)->format('d-m-Y') }}
                         </p>
+                        <a class="btn btn-default" href="{{ route(DOCUMENT_EXPORT_PDF, $document->id) }}">Xuất PDF</a>
                     </div>
                 </div>
             </div>

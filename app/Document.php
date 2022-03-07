@@ -36,6 +36,8 @@ class Document extends Model
         'number_receive',
         'date_receive',
         'is_publish',
+        'number_receive_tech',
+        'date_receive_tech',
     ];
 
     public function references()
@@ -59,6 +61,11 @@ class Document extends Model
     }
 
     public function getRegisterDateAttribute($value)
+    {
+        return Carbon::parse($value)->format('d/m/Y');
+    }
+
+    public function getDateReceiveTechAttribute($value)
     {
         return Carbon::parse($value)->format('d/m/Y');
     }
