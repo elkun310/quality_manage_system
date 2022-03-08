@@ -135,7 +135,7 @@ class DocumentController extends Controller
         if ($this->documentRepository->complete($request, $id)) {
             return response()->json([
                 'status' => HTTP_SUCCESS,
-                'message' => 'Chuyển trạng thái thành công',
+                'message' => 'Hồ sơ đã được hoàn thiện',
             ]);
         }
         return response()->json([

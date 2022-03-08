@@ -233,6 +233,7 @@ $(document).ready(function () {
 
     //complete document
     $(document).on('click', '.btn-complete', function () {
+        $(document).find('.form-complete-document').trigger('reset');
         let idDocument = $(this).data('id');
         $(document).find('#modal-complete').attr('data-id', idDocument);
     })
