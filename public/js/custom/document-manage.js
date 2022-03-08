@@ -230,4 +230,63 @@ $(document).ready(function () {
             }
         })
     })
+
+    //complete document
+    $(document).on('click', '.btn-complete', function () {
+        let idDocument = $(this).data('id');
+        $(document).find('#modal-complete').attr('data-id', idDocument);
+    })
+
+    $('#complete_file').on('change', function () {
+        let $error = $('.error');
+        let $btnSubmit = $('.form-complete-document .btn-submit');
+        $error.text('');
+        let file = $(this).prop('files')[0];
+        if (file.size > 5 * 1024 * 1000) {
+            $error.text('Dung lượng tối đa là 5MB');
+            toastr.options.preventDuplicates = true;
+            toastr.error('Dung lượng quá lớn');
+            $btnSubmit.prop('disabled', true);
+            $btnSubmit.addClass('btn-disabled');
+        } else {
+            $btnSubmit.prop('disabled', false);
+            $btnSubmit.removeClass('btn-disabled');
+        }
+    });
+
+    $(document).on('submit', '.form-complete-document', function (e) {
+        e.preventDefault();
+        let idDocument = $(document).find('#modal-complete').attr('data-id');
+        let formData = new FormData(this);
+        if ($('.form-complete-document .error').text().length === 0) {
+            $.ajax({
+                type:'POST',
+                url: `/document/complete/${idDocument}`,
+                data: formData,
+                contentType: false,
+                dataType: 'JSON',
+                processData: false,
+                success: (data) => {
+                    $('.form-complete-document .btn-submit').prop('disabled', false);
+                    if(data.status === 200) {
+                        toastr.success(data.message);
+                        setTimeout(() => {
+                            window.location.href = '/document';
+                        }, 500)
+                    } else {
+                        toastr.options.preventDuplicates = true;
+                        toastr.error('Đã có lỗi xảy ra');
+                    }
+                },
+                error: function(data){
+                    $('.form-complete-document  .btn-submit').prop('disabled', false);
+                    if (data.status === 422) {
+                        toastr.options.preventDuplicates = true;
+                        toastr.error('Đã có lỗi xảy ra');
+                    }
+                }
+            });
+        }
+
+    })
 })

@@ -27,6 +27,7 @@ Route::prefix('document')->namespace('Admin')->group(function () {
     Route::get('', 'DocumentController@index')->name(DOCUMENT_INDEX);
     Route::get('create', 'DocumentController@create')->name(DOCUMENT_CREATE);
     Route::get('change-publish/{id}', 'DocumentController@changePublish')->name(DOCUMENT_CHANGE_PUBLISH);
+    Route::post('complete/{id}', 'DocumentController@complete')->name(DOCUMENT_COMPLETE);
     Route::get('export-pdf/{id}', 'DocumentController@exportPdf')->name(DOCUMENT_EXPORT_PDF);
     Route::get('{id}', 'DocumentController@show')->name(DOCUMENT_SHOW);
     Route::post('store', 'DocumentController@store')->name(DOCUMENT_STORE);

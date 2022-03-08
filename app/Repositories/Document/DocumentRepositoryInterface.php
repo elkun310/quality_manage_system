@@ -9,4 +9,6 @@ interface DocumentRepositoryInterface
     public function updateDocument($request, $id);
 
     public function getList($params);
+
+    public function complete($request, $id);
 }

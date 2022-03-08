@@ -191,4 +191,24 @@ class DocumentEloquentRepository extends BaseRepository implements DocumentRepos
             ->orderBy('id', 'desc')
             ->paginate(PAGINATE_DEFAULT);
     }
+
+    /**
+     * Complete document
+     */
+    public function complete($request, $id)
+    {
+        $document = $this->model->findOrFail($id);
+        if (!$document) return false;
+        try {
+            $file = $request->file('complete_file');
+            $document->complete_file = $document->id . '_' . $file->getClientOriginalName() ?? null;
+            $document->is_complete = IS_COMPLETE;
+            $document->save();
+            Storage::disk('public')->putFileAs('complete_files', $file, $document->complete_file);
+            return $document;
+        } catch (\Exception $exception) {
+            report($exception);
+            return false;
+        }
+    }
 }

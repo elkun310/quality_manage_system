@@ -20,6 +20,10 @@ if (!defined('DOCUMENT_CHANGE_PUBLISH')) {
     define('DOCUMENT_CHANGE_PUBLISH', 'document.change_publish');
 }
 
+if (!defined('DOCUMENT_COMPLETE')) {
+    define('DOCUMENT_COMPLETE', 'document.complete');
+}
+
 if (!defined('DOCUMENT_EXPORT_PDF')) {
     define('DOCUMENT_EXPORT_PDF', 'document.export_pdf');
 }
@@ -101,4 +105,8 @@ if (!defined('IS_PUBLISH')) {
 
 if (!defined('NOT_PUBLISH')) {
     define('NOT_PUBLISH', 0);
+}
+
+if (!defined('IS_COMPLETE')) {
+    define('IS_COMPLETE', 1);
 }

@@ -22,6 +22,7 @@ class DocumentController extends Controller
     {
         $this->documentRepository = $documentRepository;
     }
+
     public function index(Request $request)
     {
         $param = $request->all();
@@ -48,12 +49,12 @@ class DocumentController extends Controller
     {
         if ($this->documentRepository->createDocument($request)) {
             return response()->json([
-                'status' =>  HTTP_SUCCESS,
+                'status' => HTTP_SUCCESS,
                 'message' => 'Tạo hồ sơ thành công',
             ]);
         }
         return response()->json([
-            'status' =>  HTTP_BAD_REQUEST,
+            'status' => HTTP_BAD_REQUEST,
             'message' => 'Đã có lỗi xảy ra',
         ]);
 
@@ -71,12 +72,12 @@ class DocumentController extends Controller
     {
         if ($this->documentRepository->updateDocument($request, $id)) {
             return response()->json([
-                'status' =>  HTTP_SUCCESS,
+                'status' => HTTP_SUCCESS,
                 'message' => 'Cập nhật hồ sơ thành công',
             ]);
         }
         return response()->json([
-            'status' =>  HTTP_BAD_REQUEST,
+            'status' => HTTP_BAD_REQUEST,
             'message' => 'Đã có lỗi xảy ra',
         ]);
     }
@@ -96,21 +97,21 @@ class DocumentController extends Controller
     public function changePublish($id)
     {
         $document = $this->documentRepository->findOrFail($id);
-        if($document) {
+        if ($document) {
             try {
                 $document->is_publish = !$document->is_publish;
                 $document->save();
                 return response()->json([
-                    'status' =>  HTTP_SUCCESS,
+                    'status' => HTTP_SUCCESS,
                     'message' => 'Chuyển trạng thái thành công',
                 ]);
-            } catch(\Exception $exception) {
+            } catch (\Exception $exception) {
                 report($exception);
                 return redirect()->route(DOCUMENT_INDEX)->with('error-flash', 'Đã có lỗi xảy ra');
             }
         }
         return response()->json([
-            'status' =>  HTTP_BAD_REQUEST,
+            'status' => HTTP_BAD_REQUEST,
             'message' => 'Đã có lỗi xảy ra',
         ]);
     }
@@ -119,6 +120,28 @@ class DocumentController extends Controller
     {
         $document = $this->documentRepository->with(['products', 'references'])->findOrFail($id);
         $pdf = PDF::loadView('admin.documents.export_pdf', compact('document'));
-        return $pdf->download('document.pdf');
+        return $pdf->download('document_' . now()->format('d-m-Y') . '.pdf');
+    }
+
+    public function complete($id, Request $request)
+    {
+        $request->validate([
+            'complete_file' => 'bail|required',
+        ],
+            [
+                'complete_file.required' => 'Bạn chưa chọn file',
+            ]
+        );
+        if ($this->documentRepository->complete($request, $id)) {
+            return response()->json([
+                'status' => HTTP_SUCCESS,
+                'message' => 'Chuyển trạng thái thành công',
+            ]);
+        }
+        return response()->json([
+            'status' => HTTP_BAD_REQUEST,
+            'message' => 'Đã có lỗi xảy ra',
+        ]);
+
     }
 }

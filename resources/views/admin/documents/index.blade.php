@@ -27,12 +27,13 @@
                     <div class="col-md-10 col-sm-12"></div>
                     <div class="col-md-2 col-sm-12 mb-sm-3">
                         <a href="{{route(DOCUMENT_CREATE)}}" class="btn btn-info float-md-right">
-                        Thêm hồ sơ</a>
+                            Thêm hồ sơ</a>
                     </div>
                     <div class="col-md-8 col-sm-12">
                         <div class="input-group">
                             <input name="search" type="search" class="form-control form-control-lg f-18"
-                                   value="{{ $param['search'] ?? "" }}" placeholder="Mời nhập tên công ty, vào sổ đăng ký số, ký hiệu, xuất xứ, quy chuẩn">
+                                   value="{{ $param['search'] ?? "" }}"
+                                   placeholder="Mời nhập tên công ty, vào sổ đăng ký số, ký hiệu, xuất xứ, quy chuẩn">
                             <div class="input-group-append">
                                 <button type="submit" class="btn btn-lg btn-default">
                                     <i class="fa fa-search"></i>
@@ -43,9 +44,18 @@
                     <div class="col-md-3 col-sm-12">
                         <div class="form-group">
                             <select class="form-control slt-status" name="dead_line">
-                                <option value="{{ ALL }}" @if(isset($param['dead_line']) && $param['dead_line'] === ALL) selected @endif>Tất cả</option>
-                                <option value="{{ ACTIVE }}" @if(isset($param['dead_line']) && $param['dead_line'] === ACTIVE) selected @endif>Còn hạn</option>
-                                <option value="{{ DEAD_LINE_STATUS }}" @if(isset($param['dead_line']) && $param['dead_line'] === DEAD_LINE_STATUS) selected @endif>Quá hạn</option>
+                                <option value="{{ ALL }}"
+                                        @if(isset($param['dead_line']) && $param['dead_line'] === ALL) selected @endif>
+                                    Tất cả
+                                </option>
+                                <option value="{{ ACTIVE }}"
+                                        @if(isset($param['dead_line']) && $param['dead_line'] === ACTIVE) selected @endif>
+                                    Còn hạn
+                                </option>
+                                <option value="{{ DEAD_LINE_STATUS }}"
+                                        @if(isset($param['dead_line']) && $param['dead_line'] === DEAD_LINE_STATUS) selected @endif>
+                                    Quá hạn
+                                </option>
                             </select>
                         </div>
                     </div>
@@ -63,7 +73,7 @@
                             <tr>
                                 <th style="width: 10px">STT</th>
                                 <th>Tên công ty</th>
-                                <th>Vào sổ đăng ký số </th>
+                                <th>Vào sổ đăng ký số</th>
                                 <th>Quy chuẩn</th>
                                 <th>Xuất xứ, hãng sản xuất</th>
                                 <th>Ký hiệu</th>
@@ -95,17 +105,31 @@
                                         @endfor
                                     </td>
                                     <td>{{ \Carbon\Carbon::parse($document->dead_line)->format('d/m/Y') }}</td>
-                                    <td>
-                                        @if($document->dead_line < now()->format('Y-m-d'))
+                                    <td class="text-center">
+                                        @if($document->dead_line < now()->format('Y-m-d') && !$document->is_complete)
                                             <span class="badge badge-danger">Quá hạn</span>
-                                        @else
+                                        @elseif($document->dead_line > now()->format('Y-m-d') && !$document->is_complete)
                                             <span class="badge badge-success">Còn hạn</span>
+                                        @else
+                                            <span class="badge badge-info">Đã hoàn thiện</span>
                                         @endif
+                                        <br>
+                                        @if(!$document->is_complete)
+                                            <button type="button" class="btn btn-outline-info mt-3 btn-complete"
+                                                    data-toggle="modal"
+                                                    data-target="#modal-complete" data-id="{{ $document->id }}">
+                                                Hoàn thiện
+                                            </button>
+                                        @endif
+
                                     </td>
                                     <td>
                                         <div class="custom-control custom-checkbox">
-                                            <input @if($document->is_publish === IS_PUBLISH) checked @endif class="custom-control-input change-publish" type="checkbox" id="{{"document-".$document->id}}" value="{{ $document->id }}">
-                                            <label for="{{"document-".$document->id}}" class="custom-control-label"></label>
+                                            <input @if($document->is_publish === IS_PUBLISH) checked
+                                                   @endif class="custom-control-input change-publish" type="checkbox"
+                                                   id="{{"document-".$document->id}}" value="{{ $document->id }}">
+                                            <label for="{{"document-".$document->id}}"
+                                                   class="custom-control-label"></label>
                                         </div>
                                     </td>
                                     <td>
@@ -116,7 +140,7 @@
                                             Xem
                                         </a>
 
-                                        @if($document->is_publish === NOT_PUBLISH)
+                                        @if($document->is_publish === NOT_PUBLISH && !$document->is_complete)
                                             <a class="btn btn-info btn-sm mb-2"
                                                href="{{ route(DOCUMENT_EDIT, $document->id) }}">
                                                 <i class="fas fa-pencil-alt">
@@ -125,11 +149,12 @@
                                             </a>
                                         @endif
 
-                                        @if($document->is_publish === NOT_PUBLISH)
-                                            <form action="{{ route(DOCUMENT_DELETE, $document->id) }}" method="POST" >
+                                        @if($document->is_publish === NOT_PUBLISH && !$document->is_complete)
+                                            <form action="{{ route(DOCUMENT_DELETE, $document->id) }}" method="POST">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="submit"  class="btn btn-danger btn-sm mb-2" onclick="return confirm('Bạn có chắc chắn muốn xoá hồ sơ này không ? ')">
+                                                <button type="submit" class="btn btn-danger btn-sm mb-2"
+                                                        onclick="return confirm('Bạn có chắc chắn muốn xoá hồ sơ này không ? ')">
                                                     <i class="fas fa-trash">
                                                     </i>
                                                     Xoá
@@ -152,7 +177,7 @@
                         @if($documents->total() > PAGINATE_DEFAULT)
                             {{ $documents->appends($param)->links() }}
                         @endif
-                            <p>Tổng số giấy đăng ký : {{ $documents->total() }}</p>
+                        <p>Tổng số giấy đăng ký : {{ $documents->total() }}</p>
                     </div>
                 </div>
                 <!-- /.card -->
@@ -161,7 +186,7 @@
         </div><!-- /.container-fluid -->
     </section>
     <!-- /.content -->
-
+    @include('admin.documents.modal-complete')
 @endsection
 @section('js')
     <script src="{{ asset('js/custom/document-manage.js') }}"></script>

@@ -47,6 +47,13 @@
                             <a target="_blank" href="{{asset('storage/attach_files/' . $document->url)}}">Xem</a>
                         </p>
                         @endif
+
+                        @if($document->complete_file)
+                            <p>File hoàn thiện hồ sơ :
+                                <a target="_blank" href="{{asset('storage/complete_files/' . $document->complete_file)}}">Xem</a>
+                            </p>
+                        @endif
+
                         <h5>Đăng ký kiểm chất lượng hàng hoá sau : </h5>
 
                         <div class="p-0 table-responsive">

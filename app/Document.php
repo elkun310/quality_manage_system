@@ -38,6 +38,8 @@ class Document extends Model
         'is_publish',
         'number_receive_tech',
         'date_receive_tech',
+        'is_complete',
+        'complete_file',
     ];
 
     public function references()
