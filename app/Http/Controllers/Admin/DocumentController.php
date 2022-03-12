@@ -120,6 +120,11 @@ class DocumentController extends Controller
     {
         $document = $this->documentRepository->with(['products', 'references'])->findOrFail($id);
         $pdf = PDF::loadView('admin.documents.export_pdf', compact('document'));
+
+//        return view('admin.documents.export_pdf', [
+//            'document' => $document
+//        ]);
+
         return $pdf->download('document_' . now()->format('d-m-Y') . '.pdf');
     }
 

@@ -78,7 +78,7 @@
                                 <th>Xuất xứ, hãng sản xuất</th>
                                 <th>Ký hiệu</th>
                                 <th>Ngày quá hạn</th>
-                                <th>Tình trạng</th>
+                                <th class="w-140">Tình trạng</th>
                                 <th>Xuất giấy</th>
                                 <th></th>
                             </tr>

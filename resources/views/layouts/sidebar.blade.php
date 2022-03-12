@@ -13,7 +13,7 @@
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                 <li class="nav-item menu-open">
-                    <a href="#" class="nav-link @if(in_array($routeIndex, [DOCUMENT_INDEX, DOCUMENT_CREATE])) active @endif">
+                    <a href="#" class="nav-link @if(in_array($routeIndex, [DOCUMENT_INDEX, DOCUMENT_CREATE, DOCUMENT_SHOW])) active @endif">
                         <i class="nav-icon far fa-envelope"></i>
                         <p>
                             Quản lý hồ sơ

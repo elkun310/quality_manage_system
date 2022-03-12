@@ -12,9 +12,9 @@
             font-family: DejaVu Sans, sans-serif;
         }
 
-        .document-pdf-wrapper {
-            margin-bottom: 100px;
-        }
+        /*.document-pdf-wrapper {*/
+        /*    margin-bottom: 100px;*/
+        /*}*/
 
         hr {
             width: 100px;
@@ -26,7 +26,7 @@
         }
 
         th, td {
-            padding: 10px 20px;
+            padding: 1px 20px;
         }
 
         .table {
@@ -70,6 +70,12 @@
         .ml-200 {
             margin-left: 200px;
         }
+        .m-0 {
+            margin: 0;
+        }
+        p {
+            margin : 10px 0;
+        }
     </style>
 </head>
 <body>
@@ -77,11 +83,10 @@
     <div class="container">
         <div class="row">
             <div class="card-header col-md-12 text-center">
-                <h3>CỤC VIỄN THÔNG</h3>
+                <h3 class="m-0">CỤC VIỄN THÔNG</h3>
                 <hr>
-                <h4>PHIẾU NHẬN HỒ SƠ ĐĂNG KÝ KIỂM TRA CHẤT LƯỢNG HÀNG HOÁ NHẬP KHẨU</h4>
+                <h4 class="m-0">PHIẾU NHẬN HỒ SƠ ĐĂNG KÝ KIỂM TRA CHẤT LƯỢNG HÀNG HOÁ NHẬP KHẨU</h4>
                 <p>Số : {{ $document->number_receive_tech }} / KTCL-CNDV</p>
-                <br>
             </div>
         </div>
         <div class="card-body">
@@ -307,13 +312,12 @@
 
             </table>
             <p class="font-weight-bold">Ghi chú : </p>
-            <br><br>
             <p class="float-right">........, ngày tháng năm 202...</p>
             <p class="font-weight-bold clear-both text-center">
                 Người nộp hồ sơ
                 <span class="font-weight-bold ml-200">Người tiếp nhận</span>
             </p>
-            <br><br><br><br><br>
+            <br>
             <p class="font-weight-bold">Điện thoại liên hệ : </p>
         </div>
     </div>

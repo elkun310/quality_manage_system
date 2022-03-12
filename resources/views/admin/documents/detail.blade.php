@@ -53,6 +53,8 @@
                             </p>
                         @endif
 
+                        <p>Khu vực tiếp nhận : {{ AREA_RECEIVE[$document->area_receive] }}</p>
+
                         <h5>Đăng ký kiểm chất lượng hàng hoá sau : </h5>
 
                         <div class="p-0 table-responsive">
