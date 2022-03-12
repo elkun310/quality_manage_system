@@ -110,3 +110,21 @@ if (!defined('NOT_PUBLISH')) {
 if (!defined('IS_COMPLETE')) {
     define('IS_COMPLETE', 1);
 }
+
+if (!defined('AREA_RECEIVE')) {
+    define('AREA_RECEIVE', [
+        'Miền Bắc', 'Miền Trung', 'Miền Nam'
+    ]);
+}
+
+if (!defined('AREA_RECEIVE_MB')) {
+    define('AREA_RECEIVE_MB', 0);
+}
+
+if (!defined('AREA_RECEIVE_MT')) {
+    define('AREA_RECEIVE_MT', 1);
+}
+
+if (!defined('AREA_RECEIVE_MN')) {
+    define('AREA_RECEIVE_MN', 2);
+}

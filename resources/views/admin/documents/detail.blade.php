@@ -32,7 +32,6 @@
                     <h6 class="text-bold">Kính gửi: Cục viễn thông</h6>
                 </div>
             </div>
-
             <div class="card-body">
                 <div class="row invoice-info">
                     <div class="col-sm-12">
@@ -121,7 +120,6 @@
                             @endforelse
                         </ul>
                         <hr>
-                        <p>Số phiếu tiếp nhận của trung tâm ĐLCL : {{ $document->number_receive }} . Ngày tiếp nhận : {{ $document->date_receive }}</p>
                         <p class="font-weight-bold">
                             Vào sổ đăng ký số : {{ $document->digital_code }}<br/>
                             Ngày : {{ \Carbon\Carbon::parse($document->created_at)->format('d-m-Y') }}

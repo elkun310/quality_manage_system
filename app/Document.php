@@ -33,13 +33,12 @@ class Document extends Model
         'dead_line',
         'status',
         'register_date',
-        'number_receive',
-        'date_receive',
         'is_publish',
         'number_receive_tech',
         'date_receive_tech',
         'is_complete',
         'complete_file',
+        'area_receive',
     ];
 
     public function references()

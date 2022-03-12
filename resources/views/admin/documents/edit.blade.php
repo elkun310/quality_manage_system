@@ -177,30 +177,6 @@
                                 </div>
 
                                 <div class="form-group row">
-                                    <label for="number_receive" class="col-sm-3 col-form-label">Số phiếu tiếp nhận của trung tâm ĐLCL</label>
-                                    <input required type="text" class="form-control col-sm-9" id="number_receive"
-                                           placeholder="Nhập số phiếu tiếp nhận" name="number_receive" autocomplete="off" data-name="number_receive"
-                                           value="{{ $document->number_receive }}"
-                                    >
-                                    <p class="col-sm-9 text-danger offset-sm-3 error" data-error="number_receive"></p>
-                                </div>
-
-                                <div class="form-group row">
-                                    <label for="date_receive" class="col-sm-3 col-form-label">Ngày tiếp nhận</label>
-                                    <div class="input-group col-sm-9 no-padding">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
-                                        </div>
-                                        <input id="date_receive" type="text" class="form-control"
-                                               data-inputmask-alias="datetime" data-inputmask-inputformat="dd/mm/yyyy"
-                                               data-mask="" inputmode="numeric" name="date_receive" placeholder="dd/mm/yyyy" data-error="date_receive"
-                                               value="{{ $document->date_receive }}"
-                                        >
-                                    </div>
-                                    <p class="col-sm-9 text-danger offset-sm-3 error" data-error="date_receive"></p>
-                                </div>
-
-                                <div class="form-group row">
                                     <label for="number_receive_tech" class="col-sm-3 col-form-label">Số phiếu tiếp nhận của phòng CNDV</label>
                                     <input required type="text" class="form-control col-sm-9" id="number_receive_tech"
                                            placeholder="Nhập số phiếu tiếp nhận của phòng CNDV" name="number_receive_tech"
@@ -224,6 +200,22 @@
                                         >
                                     </div>
                                     <p class="col-sm-9 text-danger offset-sm-3 error" data-error="date_receive_tech"></p>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label for="area_receive" class="col-sm-3 col-form-label">Khu vực tiếp nhận</label>
+                                    <div class="input-group col-sm-9 no-padding">
+                                        <div class="form-group">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="area_receive" id="area_receive_1" value="{{ AREA_RECEIVE_MT }}" @if($document->area_receive == AREA_RECEIVE_MT) checked @endif>
+                                                <label class="form-check-label" for="area_receive_1">Miền Trung</label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="area_receive" id="area_receive_2" value="{{ AREA_RECEIVE_MN }}" @if($document->area_receive == AREA_RECEIVE_MN) checked @endif>
+                                                <label class="form-check-label" for="area_receive_2">Miền Nam</label>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
 
                                 <!-- Gian hạn thêm -->
@@ -255,8 +247,7 @@
                                 <div class="form-group row">
                                     <label for="name" class="col-sm-3 col-form-label">Tên hàng hoá</label>
                                     <textarea id="name" class="form-control col-sm-9 name-product" rows="2"
-                                              placeholder="Nhập tên hàng hoá">{{ count($document->products) > 0 ? $document->products[0]->name : "" }}
-                                    </textarea>
+                                              placeholder="Nhập tên hàng hoá">{{ count($document->products) > 0 ? $document->products[0]->name : "" }}</textarea>
                                 </div>
 
                                 <div class="form-group row">

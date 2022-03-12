@@ -36,7 +36,6 @@ class DocumentEloquentRepository extends BaseRepository implements DocumentRepos
             $params = $request->all();
             $params['import_date'] = \DateTime::createFromFormat("d/m/Y", $params['import_date'])->format("Y-m-d");
             $params['register_date'] = \DateTime::createFromFormat("d/m/Y", $params['register_date'])->format("Y-m-d");
-            $params['date_receive'] = \DateTime::createFromFormat("d/m/Y", $params['date_receive'])->format("Y-m-d");
             $params['date_receive_tech'] = \DateTime::createFromFormat("d/m/Y", $params['date_receive_tech'])->format("Y-m-d");
             $params['dead_line'] = Carbon::parse(now())->addWeekdays(15)->format('Y-m-d');
             $document = Document::create($params);
@@ -98,7 +97,6 @@ class DocumentEloquentRepository extends BaseRepository implements DocumentRepos
             $params = $request->all();
             $params['import_date'] = \DateTime::createFromFormat("d/m/Y", $params['import_date'])->format("Y-m-d");
             $params['register_date'] = \DateTime::createFromFormat("d/m/Y", $params['register_date'])->format("Y-m-d");
-            $params['date_receive'] = \DateTime::createFromFormat("d/m/Y", $params['date_receive'])->format("Y-m-d");
             $params['date_receive_tech'] = \DateTime::createFromFormat("d/m/Y", $params['date_receive_tech'])->format("Y-m-d");
 
             if ($params['date_extend']) {
