@@ -80,7 +80,7 @@
                 <h3>CỤC VIỄN THÔNG</h3>
                 <hr>
                 <h4>PHIẾU NHẬN HỒ SƠ ĐĂNG KÝ KIỂM TRA CHẤT LƯỢNG HÀNG HOÁ NHẬP KHẨU</h4>
-                <p>Số : {{ $document->number_receive_tech }} / KTCL-CNDV/TTĐLMN/TTĐLMT</p>
+                <p>Số : {{ $document->number_receive_tech }} / KTCL-CNDV</p>
                 <br>
             </div>
         </div>
