@@ -209,4 +209,17 @@ class DocumentEloquentRepository extends BaseRepository implements DocumentRepos
             return false;
         }
     }
+
+    /**
+     * Generate File Receive
+     */
+    public function generateFile($area) {
+        return $this->model
+            ->where('area_receive', $area)
+//            ->where('created_at', '>=', Carbon::today())
+            ->whereDate('created_at', Carbon::today())
+            ->with('products')
+            ->orderBy('id', 'desc')
+            ->get();
+    }
 }

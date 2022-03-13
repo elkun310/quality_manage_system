@@ -48,6 +48,14 @@ if (!defined('DOCUMENT_DELETE')) {
     define('DOCUMENT_DELETE', 'document.destroy');
 }
 
+if (!defined('TRANSFER_FILE')) {
+    define('TRANSFER_FILE', 'transfer_file.index');
+}
+
+if (!defined('GENERATE_FILE')) {
+    define('GENERATE_FILE', 'transfer_file.generate');
+}
+
 if (!defined('REFERENCES')) {
     define('REFERENCES', [
         'Hợp đồng (bản sao)',

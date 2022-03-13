@@ -35,6 +35,15 @@
                         </li>
                     </ul>
                 </li>
+
+                <li class="nav-item">
+                    <a href="{{ route(TRANSFER_FILE) }}" class="nav-link @if($routeIndex == TRANSFER_FILE)) active @endif">
+                        <i class="nav-icon far fa-file"></i>
+                        <p>
+                            Phiếu chuyển giấy
+                        </p>
+                    </a>
+                </li>
             </ul>
         </nav>
         <!-- /.sidebar-menu -->

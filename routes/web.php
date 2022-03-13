@@ -35,6 +35,11 @@ Route::prefix('document')->namespace('Admin')->group(function () {
     Route::post('update/{id}', 'DocumentController@update')->name(DOCUMENT_UPDATE);
     Route::delete('{id}', 'DocumentController@destroy')->name(DOCUMENT_DELETE);
 });
+Route::prefix('transfer')->namespace('Admin')->group(function() {
+    Route::get('', 'TransferFileController@index')->name(TRANSFER_FILE);
+    Route::get('generate', 'TransferFileController@generateFile')->name(GENERATE_FILE);
+
+});
 
 /**
  * Learn Laravel Routes

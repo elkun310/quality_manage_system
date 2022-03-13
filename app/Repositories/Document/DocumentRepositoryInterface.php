@@ -11,4 +11,6 @@ interface DocumentRepositoryInterface
     public function getList($params);
 
     public function complete($request, $id);
+
+    public function generateFile($area);
 }
