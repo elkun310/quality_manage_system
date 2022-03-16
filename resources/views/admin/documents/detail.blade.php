@@ -122,6 +122,7 @@
                             @endforelse
                         </ul>
                         <hr>
+                        <p>Số phiếu tiếp nhận của phòng CNDV : {{ $document->number_receive_tech }} / KTCL-CNDV</p>
                         <p class="font-weight-bold">
                             Vào sổ đăng ký số : {{ $document->digital_code }}<br/>
                             Ngày : {{ \Carbon\Carbon::parse($document->created_at)->format('d-m-Y') }}

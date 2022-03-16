@@ -118,7 +118,7 @@ class DocumentController extends Controller
     {
         $document = $this->documentRepository->with(['products', 'references'])->findOrFail($id);
         $pdf = PDF::loadView('admin.documents.export_pdf', compact('document'));
-        return $pdf->download('document_' . now()->format('d-m-Y') . '.pdf');
+        return $pdf->download($document->number_receive_tech .'/KTCL-CNDV_'. now()->format('d-m-Y') . '.pdf');
     }
 
     public function complete($id, Request $request)
