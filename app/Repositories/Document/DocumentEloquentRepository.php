@@ -46,6 +46,7 @@ class DocumentEloquentRepository extends BaseRepository implements DocumentRepos
                 $document->url = $document->id . '_' . $file->getClientOriginalName() ?? null;
             }
             $document->digital_code = $document->id . DIGITAL_NAMESPACE;
+            $document->number_receive_tech = $document->id;
             $document->save();
 
             //create references
@@ -216,7 +217,6 @@ class DocumentEloquentRepository extends BaseRepository implements DocumentRepos
     public function generateFile($area) {
         return $this->model
             ->where('area_receive', $area)
-//            ->where('created_at', '>=', Carbon::today())
             ->whereDate('created_at', Carbon::today())
             ->with('products')
             ->orderBy('id', 'desc')
