@@ -145,7 +145,7 @@ class DocumentEloquentRepository extends BaseRepository implements DocumentRepos
 
             DB::commit();
             if ($request->hasFile('attach_file')) {
-                if ($oldUrl & Storage::disk('public')->exists("attach_files/" . $oldUrl)) {
+                if ($oldUrl && Storage::disk('public')->exists("attach_files/" . $oldUrl)) {
                     unlink(storage_path('app/public/attach_files/' . $oldUrl));
                 }
                 Storage::disk('public')->putFileAs('attach_files', $file, $document->id . '_' . $file->getClientOriginalName());
