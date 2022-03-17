@@ -28,7 +28,7 @@
                     <h6>Độc lập - Tự do - Hạnh phúc</h6>
                     <br>
                     <h5>ĐĂNG KÝ KIỂM TRA</h5>
-                    <h5>NHÀ NƯỚC VỀ CHẤT LƯỢNG QUẢN LÝ SẢN PHẨM</h5>
+                    <h5>NHÀ NƯỚC VỀ CHẤT LƯỢNG HÀNG HÓA NHẬP KHẨU</h5>
                     <h6 class="text-bold">Kính gửi: Cục viễn thông</h6>
                 </div>
             </div>
