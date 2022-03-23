@@ -136,3 +136,11 @@ if (!defined('AREA_RECEIVE_MT')) {
 if (!defined('AREA_RECEIVE_MN')) {
     define('AREA_RECEIVE_MN', 2);
 }
+
+if (!defined('PRODUCT_DISCOUNT_MIN')) {
+    define('PRODUCT_DISCOUNT_MIN', 3);
+}
+
+if (!defined('ERROR_PRODUCT_DISCOUNT')) {
+    define('ERROR_PRODUCT_DISCOUNT', "error product discount");
+}

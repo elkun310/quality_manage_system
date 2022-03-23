@@ -137,9 +137,10 @@ $(document).ready(function () {
                         window.location.href = '/document';
                     }, 1000)
                 } else {
+                    toastr.options.fadeOut = 1000;
                     $("html, body").animate({ scrollTop: 0 }, "slow");
                     toastr.options.preventDuplicates = true;
-                    toastr.error('Đã có lỗi xảy ra');
+                    toastr.error(data.discount_product ? data.message : 'Đã có lỗi xảy ra');
                 }
             },
             error: function(data){

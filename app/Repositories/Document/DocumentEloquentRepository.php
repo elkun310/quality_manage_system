@@ -31,6 +31,9 @@ class DocumentEloquentRepository extends BaseRepository implements DocumentRepos
      */
     public function createDocument($request)
     {
+        if (!$this->checkDiscount($request->all())) {
+            return ERROR_PRODUCT_DISCOUNT;
+        }
         DB::beginTransaction();
         try {
             $params = $request->all();
@@ -214,12 +217,37 @@ class DocumentEloquentRepository extends BaseRepository implements DocumentRepos
     /**
      * Generate File Receive
      */
-    public function generateFile($area) {
+    public function generateFile($area)
+    {
         return $this->model
             ->where('area_receive', $area)
             ->whereDate('created_at', Carbon::today())
             ->with('products')
             ->orderBy('id', 'desc')
             ->get();
+    }
+
+    public function checkDiscount($params)
+    {
+        $products = json_decode($params['product']);
+        try {
+            for ($i = 0; $i < count($products); $i++) {
+                $countDocuments = $this->model
+                    ->where('name_company', '=', $params['name_company'])
+                    ->whereHas('products', function ($query) use ($i, $products, $params) {
+                        return $query->where('name', '=', $products[$i]->name)
+                            ->where('specification', '=', $products[$i]->specification)
+                            ->where('symbol', '=', $products[$i]->symbol);
+                    })
+                    ->count();
+                if ($countDocuments >= PRODUCT_DISCOUNT_MIN) {
+                    return false;
+                }
+                return true;
+            }
+        } catch (\Exception $exception) {
+            report($exception);
+            return false;
+        }
     }
 }

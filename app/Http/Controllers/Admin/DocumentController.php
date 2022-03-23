@@ -45,6 +45,13 @@ class DocumentController extends Controller
 
     public function store(CreateDocumentRequest $request)
     {
+        if ($this->documentRepository->createDocument($request) === ERROR_PRODUCT_DISCOUNT) {
+            return response()->json([
+                'status' => HTTP_BAD_REQUEST,
+                'message' => 'Bạn cần phải thực hiện miễn giảm',
+                'discount_product' => true
+            ]);
+        }
         if ($this->documentRepository->createDocument($request)) {
             return response()->json([
                 'status' => HTTP_SUCCESS,
