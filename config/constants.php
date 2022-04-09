@@ -144,3 +144,7 @@ if (!defined('PRODUCT_DISCOUNT_MIN')) {
 if (!defined('ERROR_PRODUCT_DISCOUNT')) {
     define('ERROR_PRODUCT_DISCOUNT', "error product discount");
 }
+
+if (!defined('HTTPS_STATUS_OK')) {
+    define('HTTPS_STATUS_OK', 200);
+}

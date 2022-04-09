@@ -45,24 +45,31 @@ class DocumentController extends Controller
 
     public function store(CreateDocumentRequest $request)
     {
-        if (!$this->documentRepository->checkDiscount($request)) {
+        // if (!$this->documentRepository->checkDiscount($request)) {
+        //     return response()->json([
+        //         'status' => HTTP_BAD_REQUEST,
+        //         'message' => 'Bạn cần phải thực hiện miễn giảm',
+        //         'discount_product' => true
+        //     ]);
+        // }
+
+        $documentStatus = $this->documentRepository->createDocument($request);
+        if ($documentStatus === ERROR_PRODUCT_DISCOUNT) {
             return response()->json([
-                'status' => HTTP_BAD_REQUEST,
+                'status' => HTTP_SUCCESS,
                 'message' => 'Bạn cần phải thực hiện miễn giảm',
-                'discount_product' => true
             ]);
-        }
-        if ($this->documentRepository->createDocument($request)) {
+        } else if ($documentStatus === HTTPS_STATUS_OK) {
             return response()->json([
                 'status' => HTTP_SUCCESS,
                 'message' => 'Tạo hồ sơ thành công',
             ]);
+        } else {
+            return response()->json([
+                'status' => HTTP_BAD_REQUEST,
+                'message' => 'Đã có lỗi xảy ra',
+            ]);
         }
-        return response()->json([
-            'status' => HTTP_BAD_REQUEST,
-            'message' => 'Đã có lỗi xảy ra',
-        ]);
-
     }
 
     public function edit($id)

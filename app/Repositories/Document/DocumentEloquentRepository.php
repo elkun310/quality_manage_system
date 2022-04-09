@@ -31,8 +31,13 @@ class DocumentEloquentRepository extends BaseRepository implements DocumentRepos
      */
     public function createDocument($request)
     {
+        // if (!$this->checkDiscount($request->all())) {
+        //     return false;
+        // }
+        // dd($this->checkDiscount($request->all()));
         DB::beginTransaction();
         try {
+            // dd(123132);
             $params = $request->all();
             $params['import_date'] = \DateTime::createFromFormat("d/m/Y", $params['import_date'])->format("Y-m-d");
             $params['register_date'] = \DateTime::createFromFormat("d/m/Y", $params['register_date'])->format("Y-m-d");
@@ -76,7 +81,7 @@ class DocumentEloquentRepository extends BaseRepository implements DocumentRepos
             if ($request->hasFile('attach_file')) {
                 Storage::disk('public')->putFileAs('attach_files', $file, $document->id . '_' . $file->getClientOriginalName());
             }
-            return $document;
+            return $this->checkDiscount($request->all()) ? HTTPS_STATUS_OK : ERROR_PRODUCT_DISCOUNT;
         } catch (\Exception $exception) {
             DB::rollBack();
             report($exception);
