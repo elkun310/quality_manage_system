@@ -31,9 +31,6 @@ class DocumentEloquentRepository extends BaseRepository implements DocumentRepos
      */
     public function createDocument($request)
     {
-        if (!$this->checkDiscount($request->all())) {
-            return ERROR_PRODUCT_DISCOUNT;
-        }
         DB::beginTransaction();
         try {
             $params = $request->all();
@@ -237,7 +234,8 @@ class DocumentEloquentRepository extends BaseRepository implements DocumentRepos
                     ->whereHas('products', function ($query) use ($i, $products, $params) {
                         return $query->where('name', '=', $products[$i]->name)
                             ->where('specification', '=', $products[$i]->specification)
-                            ->where('symbol', '=', $products[$i]->symbol);
+                            ->where('symbol', '=', $products[$i]->symbol)
+                            ->where('origin', 'like', '%'.$products[$i]->origin.'%');;
                     })
                     ->count();
                 if ($countDocuments >= PRODUCT_DISCOUNT_MIN) {
