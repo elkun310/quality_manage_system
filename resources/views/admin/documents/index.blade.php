@@ -165,7 +165,7 @@
                                 </tr>
                             @empty
                                 <tr>
-                                    <td class="text-center border-0 text-danger" colspan="7">Không có dữ liệu</td>
+                                    <td class="text-center border-0 text-danger" colspan="10">Không có dữ liệu</td>
                                 </tr>
                             @endforelse
                             </tbody>
