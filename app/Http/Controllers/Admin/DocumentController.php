@@ -24,8 +24,6 @@ class DocumentController extends Controller
 
     public function index(Request $request)
     {
-        Route::redirect('document.create', '301');
-        dd(123);
         $param = $request->all();
         return view('admin.documents.index', [
             'documents' => $this->documentRepository->getList($param),
