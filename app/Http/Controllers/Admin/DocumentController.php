@@ -7,6 +7,7 @@ use App\Http\Requests\CreateDocumentRequest;
 use App\Repositories\Document\DocumentRepositoryInterface;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
 
 class DocumentController extends Controller
 {
@@ -23,6 +24,8 @@ class DocumentController extends Controller
 
     public function index(Request $request)
     {
+        Route::redirect('document.create', '301');
+        dd(123);
         $param = $request->all();
         return view('admin.documents.index', [
             'documents' => $this->documentRepository->getList($param),
