@@ -56,6 +56,18 @@ if (!defined('GENERATE_FILE')) {
     define('GENERATE_FILE', 'transfer_file.generate');
 }
 
+if (!defined('EXEMPTION_INDEX')) {
+    define('EXEMPTION_INDEX', 'exemption.index');
+}
+
+if (!defined('EXEMPTION_CREATE')) {
+    define('EXEMPTION_CREATE', 'exemption.create');
+}
+
+if (!defined('EXEMPTION_STORE')) {
+    define('EXEMPTION_STORE', 'exemption.store');
+}
+
 if (!defined('REFERENCES')) {
     define('REFERENCES', [
         'Hợp đồng (bản sao)',

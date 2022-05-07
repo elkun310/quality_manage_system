@@ -44,6 +44,30 @@
                         </p>
                     </a>
                 </li>
+
+                <li class="nav-item menu-open">
+                    <a href="#" class="nav-link @if(in_array($routeIndex, [EXEMPTION_INDEX, EXEMPTION_CREATE])) active @endif">
+                        <i class="nav-icon fas fa-copy"></i>
+                        <p>
+                            Quản lý miễn giảm
+                            <i class="fas fa-angle-left right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{ route(EXEMPTION_INDEX) }}" class="nav-link @if($routeIndex === EXEMPTION_INDEX) active @endif">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Danh sách miễn giảm</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route(EXEMPTION_CREATE) }}" class="nav-link @if(in_array($routeIndex, [EXEMPTION_CREATE])) active @endif">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Thêm miễn giảm</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
             </ul>
         </nav>
         <!-- /.sidebar-menu -->

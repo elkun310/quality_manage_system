@@ -66,6 +66,12 @@ Route::prefix('transfer')->namespace('Admin')->group(function() {
 
 });
 
+Route::prefix('exemption')->namespace('Admin')->group(function () {
+    Route::get('', 'ExemptionController@index')->name(EXEMPTION_INDEX);
+    Route::get('create', 'ExemptionController@create')->name(EXEMPTION_CREATE);
+    Route::post('store', 'ExemptionController@store')->name(EXEMPTION_STORE);
+});
+
 /**
  * Learn Laravel Routes
  */
