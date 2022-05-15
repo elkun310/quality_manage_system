@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Repositories\Exemption\ExemptionRepositoryInterface;
 use Illuminate\Http\Request;
+use App\Http\Requests\CreateExemptionRequest;
 
 class ExemptionController extends Controller
 {
@@ -25,10 +26,10 @@ class ExemptionController extends Controller
     }
 
     public function create() {
-
+        return view('admin.exemptions.create');
     }
 
-    public function store() {
-
+    public function store(CreateExemptionRequest $request) {
+        dd($request->all());
     }
 }
