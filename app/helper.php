@@ -61,12 +61,6 @@ if (!function_exists('escapeSpecialCharacter')) {
 }
 
 if (!function_exists('checkValidateProduct')) {
-    /**
-     *
-     * SQLの特殊文字をエスケープする関数like（％）
-     * @param $value
-     * @return bool|string
-     */
     function checkValidateProduct($value)
     {
         if ($value->name === "" || strlen($value->name) >= 255) {
@@ -83,6 +77,25 @@ if (!function_exists('checkValidateProduct')) {
         }
         if ($value->origin === "" || strlen($value->origin) >= 255) {
             return 'Xuất xứ, nhà sản xuất của sản phẩm đang nhập sai';
+        }
+        if ($value->amount === "") {
+            return 'Số lượng của sản phẩm đang nhập sai';
+        }
+        return true;
+    }
+}
+
+if (!function_exists('checkValidateProductExemption')) {
+    function checkValidateProductExemption($value)
+    {
+        if ($value->name === "" || strlen($value->name) >= 255) {
+            return 'Tên của sản phẩm đang nhập sai';
+        }
+        if ($value->specification === "" || strlen($value->specification) >= 255) {
+            return 'Đặc tính kỹ thuật của sản phẩm đang nhập sai';
+        }
+        if ($value->symbol === "" || strlen($value->symbol) >= 255) {
+            return 'Ký hiệu của sản phẩm đang nhập sai';
         }
         if ($value->amount === "") {
             return 'Số lượng của sản phẩm đang nhập sai';

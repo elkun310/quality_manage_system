@@ -19,7 +19,7 @@ class CreateExemptionsTable extends Migration
             $table->date('expired')->comment('thời hạn');
             $table->string('dispatch_number')->comment('số công văn');
             $table->date('dispatch_date')->comment('ngày công văn');
-            $table->string('dispatch_file')->file('file công văn');
+            $table->string('dispatch_file')->nullable()->file('file công văn');
             $table->timestamps();
         });
     }

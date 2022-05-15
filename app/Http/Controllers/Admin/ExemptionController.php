@@ -30,6 +30,16 @@ class ExemptionController extends Controller
     }
 
     public function store(CreateExemptionRequest $request) {
-        dd($request->all());
+        if ($this->exemptionRepository->createExemption($request)) {
+            return response()->json([
+                'status' => HTTP_SUCCESS,
+                'message' => 'Tạo miễn giảm thành công',
+            ]);
+        }
+
+        return response()->json([
+            'status' => HTTP_BAD_REQUEST,
+            'message' => 'Đã có lỗi xảy ra',
+        ]);
     }
 }

@@ -91,31 +91,31 @@ $(function() {
             dataType: 'JSON',
             processData: false,
             success: (data) => {
-                // $('.document-create .btn-submit').prop('disabled', false);
-                // if (data.status === 200) {
-                //     toastr.success(data.message);
-                //     setTimeout(() => {
-                //         window.location.href = '/document';
-                //     }, 1000)
-                // } else {
-                //     toastr.options.fadeOut = 1000;
-                //     $("html, body").animate({ scrollTop: 0 }, "slow");
-                //     toastr.options.preventDuplicates = true;
-                //     toastr.error(data.discount_product ? data.message : 'Đã có lỗi xảy ra');
-                // }
+                $('.exemption-create .btn-submit').prop('disabled', false);
+                if (data.status === 200) {
+                    toastr.success(data.message);
+                    setTimeout(() => {
+                        window.location.href = '/exemption';
+                    }, 1000)
+                } else {
+                    toastr.options.fadeOut = 1000;
+                    $("html, body").animate({ scrollTop: 0 }, "slow");
+                    toastr.options.preventDuplicates = true;
+                    toastr.error(data.discount_product ? data.message : 'Đã có lỗi xảy ra');
+                }
             },
             error: function(data) {
-                // $('.document-create .btn-submit').prop('disabled', false);
-                // if (data.status === 422) {
-                //     documentManage.showMessage('.document-create', data.responseJSON.errors)
-                //     $('html, body').animate({
-                //         scrollTop: $(`[data-error=${Object.keys(data.responseJSON.errors)[0]}]`).offset().top - 200
-                //     }, 1000);
-                // } else {
-                //     $("html, body").animate({ scrollTop: 0 }, "slow");
-                // }
-                // toastr.options.preventDuplicates = true;
-                // toastr.error('Đã có lỗi xảy ra');
+                $('.exemption-create .btn-submit').prop('disabled', false);
+                if (data.status === 422) {
+                    exemptionManage.showMessage('.exemption-create', data.responseJSON.errors)
+                    $('html, body').animate({
+                        scrollTop: $(`[data-error=${Object.keys(data.responseJSON.errors)[0]}]`).offset().top - 200
+                    }, 1000);
+                } else {
+                    $("html, body").animate({ scrollTop: 0 }, "slow");
+                }
+                toastr.options.preventDuplicates = true;
+                toastr.error('Đã có lỗi xảy ra');
             }
         });
     });

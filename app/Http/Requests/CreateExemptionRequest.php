@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Rules\CheckProductExemption;
 use Illuminate\Foundation\Http\FormRequest;
 
 class CreateExemptionRequest extends FormRequest
@@ -29,6 +30,7 @@ class CreateExemptionRequest extends FormRequest
             'dispatch_number' => 'required|max:255',
             'dispatch_date' => 'required|date_format:d/m/Y',
             'dispatch_file' => 'nullable|mimes:pdf,doc,docx|max:5000',
+            'product' => new CheckProductExemption(),
         ];
     }
 
