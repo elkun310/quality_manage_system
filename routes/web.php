@@ -3,6 +3,8 @@
 use App\Document;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Response;
+use App\Http\Resources\Document as DocumentResource;
+use App\Http\Resources\Documents as DocumentCollection;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,6 +21,29 @@ Route::get('/', function () {
     $documents = Document::count();
     return view('admin.home', compact('documents'));
 })->name(HOME);
+
+Route::get('/test', function () {
+//    dd(Document::first());
+//    return new DocumentResource(Document::first());
+//    return new DocumentCollection(Document::all());
+//    return DocumentResource::collection(Document::all()->keyBy->id);
+    return DocumentResource::collection(Document::all()->keyBy->id);
+});
+
+Route::get('user/{id}', function($id) {
+    return "User page a";
+})->where("id", "[0-9]+");
+
+Route::get('user/{id}', function($id){
+    if (!is_integer($id)) {
+        return "user id 23123123123";
+    }
+    return "user page b";  
+})->where("id", "[a-zA-Z]+");
+
+// Route::get('user', function(){
+//   return "Default User";  
+// });
 
 /**
  * Admin routes
@@ -39,6 +64,12 @@ Route::prefix('transfer')->namespace('Admin')->group(function() {
     Route::get('', 'TransferFileController@index')->name(TRANSFER_FILE);
     Route::get('generate', 'TransferFileController@generateFile')->name(GENERATE_FILE);
 
+});
+
+Route::prefix('exemption')->namespace('Admin')->group(function () {
+    Route::get('', 'ExemptionController@index')->name(EXEMPTION_INDEX);
+    Route::get('create', 'ExemptionController@create')->name(EXEMPTION_CREATE);
+    Route::post('store', 'ExemptionController@store')->name(EXEMPTION_STORE);
 });
 
 /**

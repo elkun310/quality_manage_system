@@ -17,6 +17,11 @@ class RepositoryServiceProvider extends ServiceProvider
             \App\Repositories\Document\DocumentRepositoryInterface::class,
             \App\Repositories\Document\DocumentEloquentRepository::class
         );
+
+        $this->app->singleton(
+            \App\Repositories\Exemption\ExemptionRepositoryInterface::class,
+            \App\Repositories\Exemption\ExemptionEloquentRepository::class
+        );
     }
 
     /**

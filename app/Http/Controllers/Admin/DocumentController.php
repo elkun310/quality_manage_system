@@ -7,6 +7,7 @@ use App\Http\Requests\CreateDocumentRequest;
 use App\Repositories\Document\DocumentRepositoryInterface;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
 
 class DocumentController extends Controller
 {

@@ -192,6 +192,7 @@ class DocumentEloquentRepository extends BaseRepository implements DocumentRepos
                         break;
                 }
             })
+            ->with('products')
             ->orderBy('id', 'desc')
             ->paginate(PAGINATE_DEFAULT);
     }

@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Document;
 use App\Observers\DocumentObserver;
+use Illuminate\Http\Resources\Json\Resource;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
 
@@ -28,5 +29,6 @@ class AppServiceProvider extends ServiceProvider
     {
         Schema::defaultStringLength(191);
         Document::observe(DocumentObserver::class);
+//        Resource::withoutWrapping();
     }
 }
